@@ -40,7 +40,7 @@ namespace DiskIcon
 			// close
 			// 
 			this.close.BackColor = System.Drawing.Color.Transparent;
-			this.close.BackgroundImage = global::DiskIcon.Resources.close;
+			this.close.BackgroundImage = global::DiskIcon.IconImage.close;
 			this.close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.close.FlatAppearance.BorderColor = System.Drawing.Color.White;
 			this.close.FlatAppearance.BorderSize = 0;
@@ -127,7 +127,7 @@ namespace DiskIcon
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = global::DiskIcon.Resources.minibg;
+			this.BackgroundImage = global::DiskIcon.BackgroundImage.minibg;
 			this.ClientSize = new System.Drawing.Size(350, 120);
 			this.Controls.Add(this.ok);
 			this.Controls.Add(this.select);

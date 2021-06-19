@@ -62,7 +62,7 @@ namespace DiskIcon
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			//Application.Run(new MainGUI());
-			new ImageEditFrame().initEditFrame(Resources.setbg);
+			new ImageEditFrame().initEditFrame(BackgroundImage.setbg);
 			Application.Run();
 		}
 	}

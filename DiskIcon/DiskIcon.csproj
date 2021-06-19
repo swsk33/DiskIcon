@@ -54,53 +54,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConfigFrame.Designer.cs">
-      <DependentUpon>ConfigFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Model\CropFrame.cs" />
-    <Compile Include="ImageEditFrame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImageEditFrame.Designer.cs">
-      <DependentUpon>ImageEditFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainGUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainGUI.Designer.cs">
-      <DependentUpon>MainGUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Config.cs" />
-    <Compile Include="Param\CropFrameStatus.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ClearIcon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClearIcon.Designer.cs">
-      <DependentUpon>ClearIcon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="QuickSetIcon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="QuickSetIcon.Designer.cs">
-      <DependentUpon>QuickSetIcon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Resources.Designer.cs">
+    <Compile Include="BackgroundImage.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>BackgroundImage.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ConfigFrame.resx">
+    <Compile Include="IconImage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IconImage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="src\Frame\ConfigFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Frame\ConfigFrame.Designer.cs">
+      <DependentUpon>ConfigFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Model\CropFrame.cs" />
+    <Compile Include="src\Frame\ImageEditFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Frame\ImageEditFrame.Designer.cs">
+      <DependentUpon>ImageEditFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Frame\MainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Frame\MainGUI.Designer.cs">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Model\Config.cs" />
+    <Compile Include="src\Param\CropFrameStatus.cs" />
+    <Compile Include="src\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Frame\ClearIcon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Frame\ClearIcon.Designer.cs">
+      <DependentUpon>ClearIcon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Frame\QuickSetIcon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Frame\QuickSetIcon.Designer.cs">
+      <DependentUpon>QuickSetIcon.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="src\Frame\ConfigFrame.resx">
       <DependentUpon>ConfigFrame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageEditFrame.resx">
+    <EmbeddedResource Include="src\Frame\ImageEditFrame.resx">
       <DependentUpon>ImageEditFrame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainGUI.resx">
+    <EmbeddedResource Include="src\Frame\MainGUI.resx">
       <DependentUpon>MainGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -111,16 +116,21 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ClearIcon.resx">
+    <EmbeddedResource Include="src\Frame\ClearIcon.resx">
       <DependentUpon>ClearIcon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuickSetIcon.resx">
+    <EmbeddedResource Include="src\Frame\QuickSetIcon.resx">
       <DependentUpon>QuickSetIcon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources.resx">
+    <EmbeddedResource Include="BackgroundImage.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>BackgroundImage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IconImage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IconImage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

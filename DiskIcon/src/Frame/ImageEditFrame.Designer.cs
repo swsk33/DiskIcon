@@ -101,7 +101,7 @@ namespace DiskIcon
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = global::DiskIcon.Resources.cutbg;
+			this.BackgroundImage = global::DiskIcon.BackgroundImage.cutbg;
 			this.ClientSize = new System.Drawing.Size(384, 484);
 			this.Controls.Add(this.stop);
 			this.Controls.Add(this.start);

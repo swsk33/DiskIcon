@@ -1,5 +1,8 @@
 ﻿namespace DiskIcon.Param
 {
+	/// <summary>
+	/// 对裁剪框状态的枚举
+	/// </summary>
 	public enum CropFrameStatus
 	{
 		/// <summary>

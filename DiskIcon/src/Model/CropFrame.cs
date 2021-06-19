@@ -26,6 +26,13 @@ namespace DiskIcon.Model
 
 		private Rectangle cropFrameDraftPoint;
 
+		private Rectangle restrictedArea;
+
+		/// <summary>
+		/// 是否划定裁剪框的移动限定区
+		/// </summary>
+		private bool doRestrict;
+
 		/// <summary>
 		/// 鼠标是否在控件上按下
 		/// </summary>
@@ -82,15 +89,39 @@ namespace DiskIcon.Model
 		public Rectangle CropFrameDraftPoint { get => cropFrameDraftPoint; set => cropFrameDraftPoint = value; }
 
 		/// <summary>
-		/// 带参构造器
+		/// 若划定限定区，则指定限定区域的具体矩形区域
 		/// </summary>
+		public Rectangle RestrictedArea { get => restrictedArea; set => restrictedArea = value; }
+
+		/// <summary>
+		/// 构建没有限制区的裁剪框
+		/// </summary>
+		/// <param name="drawComponent">指定一个控件以在其上绘制裁剪框</param>
 		public CropFrame(Control drawComponent)
+		{
+			doRestrict = false;
+			this.drawComponent = drawComponent;
+			//添加鼠标事件
+			this.drawComponent.MouseDown += new MouseEventHandler(mouseDown);
+			this.drawComponent.MouseMove += new MouseEventHandler(mouseMove);
+			this.drawComponent.MouseUp += new MouseEventHandler(mouseUp);
+		}
+
+		/// <summary>
+		/// 构建有限制区的裁剪框
+		/// </summary>
+		/// <param name="drawComponent">指定一个控件以在其上绘制裁剪框</param>
+		/// <param name="restrictedArea">限制区矩形</param>
+		public CropFrame(Control drawComponent, Rectangle restrictedArea)
 		{
 			this.drawComponent = drawComponent;
 			//添加鼠标事件
 			this.drawComponent.MouseDown += new MouseEventHandler(mouseDown);
 			this.drawComponent.MouseMove += new MouseEventHandler(mouseMove);
 			this.drawComponent.MouseUp += new MouseEventHandler(mouseUp);
+			//设定限定区
+			doRestrict = true;
+			this.restrictedArea = restrictedArea;
 		}
 
 		private void mouseDown(object sender, MouseEventArgs e)
@@ -120,7 +151,14 @@ namespace DiskIcon.Model
 					drawComponent.Cursor = Cursors.Cross;
 					if (isMouseDown)
 					{
-						ProceedCutBox(e.X - mouseAtX, e.Y - mouseAtY, cropFrameOutlineRectangle.Width, showInner);
+						if (doRestrict)
+						{
+
+						}
+						else
+						{
+							ProceedCutBox(e.X - mouseAtX, e.Y - mouseAtY, cropFrameOutlineRectangle.Width, showInner);
+						}
 					}
 				}
 				else
