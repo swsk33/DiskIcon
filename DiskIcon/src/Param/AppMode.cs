@@ -6,6 +6,10 @@
 	public enum AppMode
 	{
 		/// <summary>
+		/// 正常启动
+		/// </summary>
+		MAIN_GUI,
+		/// <summary>
 		/// 右键启动快速设定ico模式
 		/// </summary>
 		QUICK_ICO_MODE,

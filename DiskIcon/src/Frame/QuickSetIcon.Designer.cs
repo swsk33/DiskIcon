@@ -85,6 +85,7 @@ namespace DiskIcon
 			// 
 			this.DiskValue.Location = new System.Drawing.Point(27, 78);
 			this.DiskValue.Name = "DiskValue";
+			this.DiskValue.ReadOnly = true;
 			this.DiskValue.Size = new System.Drawing.Size(144, 21);
 			this.DiskValue.TabIndex = 5;
 			// 
@@ -116,7 +117,7 @@ namespace DiskIcon
 			this.ok.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.ok.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.ok.ForeColor = System.Drawing.Color.DarkMagenta;
-			this.ok.Location = new System.Drawing.Point(260, 76);
+			this.ok.Location = new System.Drawing.Point(264, 76);
 			this.ok.Name = "ok";
 			this.ok.Size = new System.Drawing.Size(66, 24);
 			this.ok.TabIndex = 6;

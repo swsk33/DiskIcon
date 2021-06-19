@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DiskIcon.Util;
+using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace DiskIcon
@@ -22,12 +24,13 @@ namespace DiskIcon
 
 		public ClearIcon()
 		{
+			CheckForIllegalCrossThreadCalls = false;
 			InitializeComponent();
 		}
 
 		private void close_Click(object sender, EventArgs e)
 		{
-			Close();
+			Dispose();
 		}
 
 		private void mouseDownEvent(object sender, MouseEventArgs e)
@@ -62,6 +65,23 @@ namespace DiskIcon
 				string selectPath = dialog.SelectedPath;
 				DiskValue.Text = selectPath.Substring(0, selectPath.IndexOf("\\") + 1);
 			}
+		}
+
+		private void ok_Click(object sender, EventArgs e)
+		{
+			if (DiskValue.Text.Equals(""))
+			{
+				MessageBox.Show("请选择磁盘！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			loading.Visible = true;
+			Application.DoEvents();
+			new Thread(() =>
+			{
+				FileUtils.RemoveDiskIcon(DiskValue.Text);
+				MessageBox.Show("清除图标完成！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				loading.Visible = false;
+			}).Start();
 		}
 	}
 }

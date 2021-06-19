@@ -39,7 +39,7 @@ namespace DiskIcon
 		/// <summary>
 		/// 运行模式
 		/// </summary>
-		public static readonly AppMode appMode;
+		public static AppMode appMode;
 
 		/// <summary>
 		/// 初始化
@@ -68,9 +68,21 @@ namespace DiskIcon
 			Initialize();
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			//Application.Run(new MainGUI());
-			new ImageEditFrame().initEditFrame(Image.FromFile(@"C:\Users\swsk33\Pictures\头像与图标\init.jpg"));
-			Application.Run();
+			/**
+			 * 当不使用命令行传入参数时，直接打开主程序
+			 * 当传入参数时，参数一有如下两种情况：
+			 * 1，参数一为i，代表快捷制作图标并设定，这时参数二为输入图片路径
+			 * 2，参数一为c，代表快捷裁剪图片，这时参数二为输入图片路径
+			 */
+			if (args.Length == 0)
+			{
+				appMode = AppMode.MAIN_GUI;
+				Application.Run(new MainGUI());
+			}
+			else
+			{
+
+			}
 		}
 	}
 }

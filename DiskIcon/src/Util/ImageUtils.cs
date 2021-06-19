@@ -28,11 +28,10 @@ namespace DiskIcon.Util
 		/// </summary>
 		/// <param name="origin">原图片</param>
 		/// <param name="destination">输出ico文件路径</param>
-		/// <param name="sideLength">图标边长</param>
 		/// <returns>是否保存成功</returns>
-		public static bool SaveToIcon(Image origin, string destination, int sideLength)
+		public static bool SaveToIcon(Image origin, string destination)
 		{
-			Image image = new Bitmap(origin, new Size(sideLength, sideLength));
+			Image image = new Bitmap(origin, new Size(Program.GlobalConfig.IconSize, Program.GlobalConfig.IconSize));
 			MemoryStream bitMapStream = new MemoryStream();
 			MemoryStream iconStream = new MemoryStream();
 			image.Save(bitMapStream, ImageFormat.Png);

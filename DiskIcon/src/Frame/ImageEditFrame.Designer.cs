@@ -39,7 +39,9 @@ namespace DiskIcon
 			this.circleMode = new System.Windows.Forms.CheckBox();
 			this.close = new System.Windows.Forms.Button();
 			this.cropTip = new System.Windows.Forms.Label();
+			this.loading = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.inputImage)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// title
@@ -88,7 +90,6 @@ namespace DiskIcon
 			// 
 			this.doNotCrop.BackColor = System.Drawing.Color.Transparent;
 			this.doNotCrop.Cursor = System.Windows.Forms.Cursors.Default;
-			this.doNotCrop.Enabled = false;
 			this.doNotCrop.FlatAppearance.BorderSize = 0;
 			this.doNotCrop.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
 			this.doNotCrop.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
@@ -101,6 +102,7 @@ namespace DiskIcon
 			this.doNotCrop.TabIndex = 6;
 			this.doNotCrop.Text = "不裁剪直接应用";
 			this.doNotCrop.UseVisualStyleBackColor = false;
+			this.doNotCrop.Click += new System.EventHandler(this.doNotCrop_Click);
 			// 
 			// apply
 			// 
@@ -119,6 +121,7 @@ namespace DiskIcon
 			this.apply.TabIndex = 6;
 			this.apply.Text = "裁剪并应用图标";
 			this.apply.UseVisualStyleBackColor = false;
+			this.apply.Click += new System.EventHandler(this.apply_Click);
 			// 
 			// saveIcon
 			// 
@@ -203,12 +206,25 @@ namespace DiskIcon
 			this.cropTip.Text = "拖动右下角调整大小\r\n拖动裁剪框调整位置";
 			this.cropTip.Visible = false;
 			// 
+			// loading
+			// 
+			this.loading.BackColor = System.Drawing.Color.Transparent;
+			this.loading.Image = global::DiskIcon.IconImage.loading;
+			this.loading.Location = new System.Drawing.Point(176, 392);
+			this.loading.Name = "loading";
+			this.loading.Size = new System.Drawing.Size(24, 24);
+			this.loading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.loading.TabIndex = 10;
+			this.loading.TabStop = false;
+			this.loading.Visible = false;
+			// 
 			// ImageEditFrame
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImage = global::DiskIcon.BackgroundImage.cutbg;
 			this.ClientSize = new System.Drawing.Size(385, 490);
+			this.Controls.Add(this.loading);
 			this.Controls.Add(this.cropTip);
 			this.Controls.Add(this.close);
 			this.Controls.Add(this.circleMode);
@@ -227,10 +243,12 @@ namespace DiskIcon
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "ImageEditFrame";
+			this.Load += new System.EventHandler(this.ImageEditFrame_Load);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ConfigFrame_MouseDown);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ConfigFrame_MouseMove);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ConfigFrame_MouseUp);
 			((System.ComponentModel.ISupportInitialize)(this.inputImage)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.loading)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -248,5 +266,6 @@ namespace DiskIcon
 		private System.Windows.Forms.CheckBox circleMode;
 		private System.Windows.Forms.Button close;
 		private System.Windows.Forms.Label cropTip;
+		private System.Windows.Forms.PictureBox loading;
 	}
 }

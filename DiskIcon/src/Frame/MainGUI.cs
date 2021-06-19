@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace DiskIcon
@@ -22,6 +23,7 @@ namespace DiskIcon
 
 		public MainGUI()
 		{
+			CheckForIllegalCrossThreadCalls = false;
 			InitializeComponent();
 		}
 
@@ -79,6 +81,26 @@ namespace DiskIcon
 				string selectPath = dialog.SelectedPath;
 				diskPathValue.Text = selectPath.Substring(0, selectPath.IndexOf("\\") + 1);
 			}
+		}
+
+		private void ok_Click(object sender, EventArgs e)
+		{
+			if (picPathValue.Text.Equals(""))
+			{
+				MessageBox.Show("请指定图片！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			if (diskPathValue.Text.Equals(""))
+			{
+				MessageBox.Show("请指定驱动器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			new ImageEditFrame().initEditFrame(Image.FromFile(picPathValue.Text), diskPathValue.Text);
+		}
+
+		private void clear_Click(object sender, EventArgs e)
+		{
+			new ClearIcon().ShowDialog();
 		}
 	}
 }

@@ -35,6 +35,8 @@ namespace DiskIcon
 			this.DiskValue = new System.Windows.Forms.TextBox();
 			this.select = new System.Windows.Forms.Button();
 			this.ok = new System.Windows.Forms.Button();
+			this.loading = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// close
@@ -85,6 +87,7 @@ namespace DiskIcon
 			// 
 			this.DiskValue.Location = new System.Drawing.Point(27, 78);
 			this.DiskValue.Name = "DiskValue";
+			this.DiskValue.ReadOnly = true;
 			this.DiskValue.Size = new System.Drawing.Size(144, 21);
 			this.DiskValue.TabIndex = 5;
 			// 
@@ -98,7 +101,7 @@ namespace DiskIcon
 			this.select.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.select.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.select.ForeColor = System.Drawing.Color.Blue;
-			this.select.Location = new System.Drawing.Point(188, 76);
+			this.select.Location = new System.Drawing.Point(181, 76);
 			this.select.Name = "select";
 			this.select.Size = new System.Drawing.Size(66, 24);
 			this.select.TabIndex = 6;
@@ -122,6 +125,19 @@ namespace DiskIcon
 			this.ok.TabIndex = 6;
 			this.ok.Text = "确认";
 			this.ok.UseVisualStyleBackColor = false;
+			this.ok.Click += new System.EventHandler(this.ok_Click);
+			// 
+			// loading
+			// 
+			this.loading.BackColor = System.Drawing.Color.Transparent;
+			this.loading.Image = global::DiskIcon.IconImage.loading;
+			this.loading.Location = new System.Drawing.Point(7, 34);
+			this.loading.Name = "loading";
+			this.loading.Size = new System.Drawing.Size(24, 24);
+			this.loading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.loading.TabIndex = 7;
+			this.loading.TabStop = false;
+			this.loading.Visible = false;
 			// 
 			// ClearIcon
 			// 
@@ -129,6 +145,7 @@ namespace DiskIcon
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImage = global::DiskIcon.BackgroundImage.minibg;
 			this.ClientSize = new System.Drawing.Size(350, 120);
+			this.Controls.Add(this.loading);
 			this.Controls.Add(this.ok);
 			this.Controls.Add(this.select);
 			this.Controls.Add(this.DiskValue);
@@ -146,6 +163,7 @@ namespace DiskIcon
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDownEvent);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mouseMoveEvent);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mouseUpEvent);
+			((System.ComponentModel.ISupportInitialize)(this.loading)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -159,5 +177,6 @@ namespace DiskIcon
 		public System.Windows.Forms.TextBox DiskValue;
 		private System.Windows.Forms.Button select;
 		private System.Windows.Forms.Button ok;
+		private System.Windows.Forms.PictureBox loading;
 	}
 }

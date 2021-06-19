@@ -23,6 +23,7 @@ namespace DiskIcon
 
 		public ConfigFrame()
 		{
+			CheckForIllegalCrossThreadCalls = false;
 			InitializeComponent();
 		}
 

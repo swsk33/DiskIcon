@@ -215,6 +215,7 @@ namespace DiskIcon
 			this.ok.TabIndex = 5;
 			this.ok.Text = "一键修改图标";
 			this.ok.UseVisualStyleBackColor = false;
+			this.ok.Click += new System.EventHandler(this.ok_Click);
 			// 
 			// clear
 			// 
@@ -232,6 +233,7 @@ namespace DiskIcon
 			this.clear.TabIndex = 5;
 			this.clear.Text = "清除图标";
 			this.clear.UseVisualStyleBackColor = false;
+			this.clear.Click += new System.EventHandler(this.clear_Click);
 			// 
 			// about
 			// 

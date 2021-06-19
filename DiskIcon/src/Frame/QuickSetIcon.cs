@@ -22,6 +22,7 @@ namespace DiskIcon
 
 		public QuickSetIcon()
 		{
+			CheckForIllegalCrossThreadCalls = false;
 			InitializeComponent();
 		}
 

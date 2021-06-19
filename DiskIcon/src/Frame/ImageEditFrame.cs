@@ -1,8 +1,10 @@
 ﻿using DiskIcon.Model;
+using DiskIcon.Param;
 using DiskIcon.Util;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace DiskIcon
@@ -49,36 +51,63 @@ namespace DiskIcon
 		/// </summary>
 		private CropFrame cropFrame;
 
+		/// <summary>
+		/// 储存器路径
+		/// </summary>
+		private string diskPath;
+
 		public ImageEditFrame()
 		{
+			CheckForIllegalCrossThreadCalls = false;
 			InitializeComponent();
 		}
 
 		/// <summary>
-		/// 以一个图像初始化一个裁剪框
+		/// 以一个图像初始化一个裁剪窗口
 		/// </summary>
 		/// <param name="image">原图像</param>
 		public void initEditFrame(Image image)
 		{
-			inputImage.Image = image;
-			double ratio = (double)image.Width / image.Height;
+			initImageArgs(image);
+			ShowDialog();
+		}
+
+		/// <summary>
+		/// 以一个图像初始化一个裁剪窗口并指定待设定图标的储存器
+		/// </summary>
+		/// <param name="image">原图像</param>
+		/// <param name="diskPath">储存器</param>
+		public void initEditFrame(Image image, string diskPath)
+		{
+			this.diskPath = diskPath;
+			initImageArgs(image);
+			ShowDialog();
+		}
+
+		/// <summary>
+		/// 初始化窗口内图像及其参数
+		/// </summary>
+		/// <param name="inputImage">输入图像</param>
+		private void initImageArgs(Image inputImage)
+		{
+			this.inputImage.Image = inputImage;
+			double ratio = (double)inputImage.Width / inputImage.Height;
 			//确定图片域
 			if (ratio > 1)
 			{
-				imageInBoxWidth = inputImage.Width;
+				imageInBoxWidth = this.inputImage.Width;
 				imageInBoxHeight = (int)(imageInBoxWidth / ratio);
 				imageInBoxX = 0;
-				imageInBoxY = (inputImage.Height - imageInBoxHeight) / 2;
+				imageInBoxY = (this.inputImage.Height - imageInBoxHeight) / 2;
 			}
 			else
 			{
-				imageInBoxHeight = inputImage.Height;
+				imageInBoxHeight = this.inputImage.Height;
 				imageInBoxWidth = (int)(imageInBoxHeight * ratio);
 				imageInBoxY = 0;
-				imageInBoxX = (inputImage.Width - imageInBoxWidth) / 2;
+				imageInBoxX = (this.inputImage.Width - imageInBoxWidth) / 2;
 			}
-			cropFrame = new CropFrame(inputImage, new Rectangle(imageInBoxX, imageInBoxY, imageInBoxWidth, imageInBoxHeight));
-			Show();
+			cropFrame = new CropFrame(this.inputImage, new Rectangle(imageInBoxX, imageInBoxY, imageInBoxWidth, imageInBoxHeight));
 		}
 
 		/// <summary>
@@ -156,7 +185,14 @@ namespace DiskIcon
 
 		private void close_Click(object sender, System.EventArgs e)
 		{
-			Close();
+			if (Program.appMode == AppMode.MAIN_GUI)
+			{
+				Dispose();
+			}
+			else
+			{
+				Application.Exit();
+			}
 		}
 
 		private void saveIcon_Click(object sender, System.EventArgs e)
@@ -167,7 +203,7 @@ namespace DiskIcon
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
 				Image icon = getCropImage();
-				bool success = ImageUtils.SaveToIcon(icon, dialog.FileName, Program.GlobalConfig.IconSize);
+				bool success = ImageUtils.SaveToIcon(icon, dialog.FileName);
 				icon.Dispose();
 				if (success)
 				{
@@ -199,6 +235,46 @@ namespace DiskIcon
 					MessageBox.Show("保存失败！请检查是否有写入权限！", "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
+		}
+
+		private void ImageEditFrame_Load(object sender, System.EventArgs e)
+		{
+			if (Program.appMode == AppMode.IMAGE_CROP_MODE)
+			{
+				doNotCrop.Visible = false;
+				apply.Visible = false;
+			}
+			else
+			{
+				doNotCrop.Visible = true;
+				apply.Visible = true;
+			}
+		}
+
+		private void apply_Click(object sender, System.EventArgs e)
+		{
+			Image icon = getCropImage();
+			loading.Visible = true;
+			Application.DoEvents();
+			new Thread(() =>
+			{
+				FileUtils.SetDiskIcon(diskPath, icon);
+				MessageBox.Show("设定图标完成！若没有立即生效，请重启电脑、重新插拔设备或者以管理员身份运行程序再试！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				loading.Visible = false;
+				icon.Dispose();
+			}).Start();
+		}
+
+		private void doNotCrop_Click(object sender, System.EventArgs e)
+		{
+			loading.Visible = true;
+			Application.DoEvents();
+			new Thread(() =>
+			{
+				FileUtils.SetDiskIcon(diskPath, inputImage.Image);
+				MessageBox.Show("设定图标完成！若没有立即生效，请重启电脑、重新插拔设备或者以管理员身份运行程序再试！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				loading.Visible = false;
+			}).Start();
 		}
 	}
 }
