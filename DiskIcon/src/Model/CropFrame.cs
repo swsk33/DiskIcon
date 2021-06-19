@@ -151,6 +151,10 @@ namespace DiskIcon.Model
 						int x = cropFrameOutlineRectangle.X;
 						int y = cropFrameOutlineRectangle.Y;
 						int sideLength = cropFrameOutlineRectangle.Width + (e.X - cropFrameOutlineRectangle.X - cropFrameOutlineRectangle.Width + e.Y - cropFrameOutlineRectangle.Y - cropFrameOutlineRectangle.Height) / 2;
+						if (sideLength < 2)
+						{
+							sideLength = 2;
+						}
 						if (doRestrict)
 						{
 							if (x + sideLength > restrictedArea.Right)

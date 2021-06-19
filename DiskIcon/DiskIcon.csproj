@@ -99,6 +99,7 @@
     <Compile Include="src\Frame\QuickSetIcon.Designer.cs">
       <DependentUpon>QuickSetIcon.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Util\ImageUtils.cs" />
     <EmbeddedResource Include="src\Frame\ConfigFrame.resx">
       <DependentUpon>ConfigFrame.cs</DependentUpon>
     </EmbeddedResource>

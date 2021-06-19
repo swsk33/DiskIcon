@@ -1,4 +1,5 @@
 ﻿using DiskIcon.Model;
+using DiskIcon.Util;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -24,32 +25,27 @@ namespace DiskIcon
 		/// <summary>
 		/// 图片相对于图片盒子所在真实x坐标
 		/// </summary>
-		private int imgX;
+		private int imageInBoxX;
 
 		/// <summary>
 		/// 图片相对于图片盒子所在真实y坐标
 		/// </summary>
-		private int imgY;
+		private int imageInBoxY;
 
 		/// <summary>
 		/// 盒子里图片宽
 		/// </summary>
-		private int imgWidth;
+		private int imageInBoxWidth;
 
 		/// <summary>
 		/// 盒子里图片高
 		/// </summary>
-		private int imgHeight;
+		private int imageInBoxHeight;
 
 		/// <summary>
-		/// 原始图片宽
+		/// 原始图片
 		/// </summary>
-		private double originImageWidth;
-
-		/// <summary>
-		/// 原始图片高
-		/// </summary>
-		private double originImageHeight;
+		private Image originImage;
 
 		/// <summary>
 		/// 裁剪框
@@ -86,46 +82,55 @@ namespace DiskIcon
 
 		public void initEditFrame(Image image)
 		{
-			inputImg.Image = image;
-			originImageWidth = image.Width;
-			originImageHeight = image.Height;
-			double ratio = originImageWidth / originImageHeight;
+			inputImage.Image = image;
+			originImage = image;
+			double ratio = (double)originImage.Width / originImage.Height;
 			//确定图片域
 			if (ratio > 1)
 			{
-				imgWidth = inputImg.Width;
-				imgHeight = (int)(imgWidth / ratio);
-				imgX = 0;
-				imgY = (inputImg.Height - imgHeight) / 2;
+				imageInBoxWidth = inputImage.Width;
+				imageInBoxHeight = (int)(imageInBoxWidth / ratio);
+				imageInBoxX = 0;
+				imageInBoxY = (inputImage.Height - imageInBoxHeight) / 2;
 			}
 			else
 			{
-				imgHeight = inputImg.Height;
-				imgWidth = (int)(imgHeight * ratio);
-				imgY = 0;
-				imgX = (inputImg.Width - imgWidth) / 2;
+				imageInBoxHeight = inputImage.Height;
+				imageInBoxWidth = (int)(imageInBoxHeight * ratio);
+				imageInBoxY = 0;
+				imageInBoxX = (inputImage.Width - imageInBoxWidth) / 2;
 			}
-			cropFrame = new CropFrame(inputImg, new Rectangle(imgX, imgY, imgWidth, imgHeight));
+			cropFrame = new CropFrame(inputImage, new Rectangle(imageInBoxX, imageInBoxY, imageInBoxWidth, imageInBoxHeight));
 			Show();
 		}
 
 		private void start_Click(object sender, System.EventArgs e)
 		{
 			start.Enabled = false;
-			stop.Enabled = true;
-			int sideLength = imgHeight;
-			if (imgWidth < imgHeight)
+			circleMode.Enabled = true;
+			saveIcon.Enabled = true;
+			savePng.Enabled = true;
+			apply.Enabled = true;
+			doNotCrop.Enabled = false;
+			int sideLength = imageInBoxHeight;
+			if (imageInBoxWidth < imageInBoxHeight)
 			{
-				sideLength = imgWidth;
+				sideLength = imageInBoxWidth;
 			}
-			cropFrame.ProceedCutBox(imgX, imgY, (int)(sideLength * 0.9), true);
+			cropFrame.ProceedCutBox(imageInBoxX, imageInBoxY, (int)(sideLength * 0.9), false);
 		}
 
-		private void stop_Click(object sender, System.EventArgs e)
+		private void circleMode_CheckedChanged(object sender, System.EventArgs e)
 		{
-			cropFrame.DisposeCropFrame();
-			start.Enabled = true;
-			stop.Enabled = false;
+			int x = cropFrame.CropFrameOutlineRectangle.X;
+			int y = cropFrame.CropFrameOutlineRectangle.Y;
+			int sideLength = cropFrame.CropFrameOutlineRectangle.Width;
+			cropFrame.ProceedCutBox(x, y, sideLength, circleMode.Checked);
+		}
+
+		private void close_Click(object sender, System.EventArgs e)
+		{
+			Close();
 		}
 	}
 }
