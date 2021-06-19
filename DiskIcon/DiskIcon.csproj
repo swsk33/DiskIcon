@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{20721EBD-51B4-49D9-978F-A9FD14F91ADE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DiskIcon</RootNamespace>
+    <AssemblyName>DiskIcon</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ReadAndWriteSharp, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swsk33.ReadAndWriteSharp.2.0.0\lib\net40\ReadAndWriteSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigFrame.Designer.cs">
+      <DependentUpon>ConfigFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CropFrame.cs" />
+    <Compile Include="ImageEditFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageEditFrame.Designer.cs">
+      <DependentUpon>ImageEditFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainGUI.Designer.cs">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Config.cs" />
+    <Compile Include="Param\CropFrameStatus.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClearIcon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClearIcon.Designer.cs">
+      <DependentUpon>ClearIcon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuickSetIcon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuickSetIcon.Designer.cs">
+      <DependentUpon>QuickSetIcon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ConfigFrame.resx">
+      <DependentUpon>ConfigFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageEditFrame.resx">
+      <DependentUpon>ImageEditFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainGUI.resx">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ClearIcon.resx">
+      <DependentUpon>ClearIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickSetIcon.resx">
+      <DependentUpon>QuickSetIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background\cutbg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background\mainbg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background\minibg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background\setbg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button\setup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gif\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\icon-cmd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\icon-cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon\icon-setup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label\disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label\pic.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

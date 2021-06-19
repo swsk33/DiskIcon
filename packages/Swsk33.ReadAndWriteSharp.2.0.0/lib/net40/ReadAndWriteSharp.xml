@@ -1,0 +1,599 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ReadAndWriteSharp</name>
+    </assembly>
+    <members>
+        <member name="T:Swsk33.ReadAndWriteSharp.BinaryUtils">
+            <summary>
+            二进制文件工具类
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.ReadBinaryFile(System.String)">
+            <summary>
+            读取二进制文件为字节数组
+            </summary>
+            <param name="filePath">待读取文件</param>
+            <returns>读取的内容，为字节数组形式</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.WriteBinaryFile(System.String,System.Byte[])">
+            <summary>
+            将二进制数据写入指定文件，文件不存在将创建，存在将被覆盖
+            </summary>
+            <param name="filePath">待写入文件</param>
+            <param name="content">写入内容</param>
+            <returns>是否写入成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.WriteObjectToFile``1(System.String,``0)">
+            <summary>
+            将可序列化的对象写入文件，文件不存在将创建，存在将被覆盖
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="filePath">待写入文件</param>
+            <param name="data">可序列化对象数据</param>
+            <returns>是否写入成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.ReadObjectFromFile``1(System.String)">
+            <summary>
+            从文件中读取数据并反序列化为相应的对象
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="filePath">待读取文件类型</param>
+            <returns>反序列化的对象</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.GetDirectoryInfo(System.String,Swsk33.ReadAndWriteSharp.Model.DirInfo)">
+            <summary>
+            获取文件夹信息并储存在一个DirInfo实例中
+            </summary>
+            <param name="dirPath">文件夹路径</param>
+            <param name="info">DirInfo实例，位于Swsk33.ReadAndWriteSharp.Model下</param>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.CopyDir(System.String,System.String)">
+            <summary>
+            复制文件夹
+            </summary>
+            <param name="origin">原文件夹</param>
+            <param name="dest">复制到的指定位置</param>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.ExtractNormalFileInResx(System.Byte[],System.String)">
+            <summary>
+            释放嵌入在resx里面的普通类型文件
+            </summary>
+            <param name="resource">resx里面的资源</param>
+            <param name="path">释放到的路径</param>
+            <returns>是否释放成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.ExtractAudioFileInResx(System.IO.Stream,System.String)">
+            <summary>
+            释放嵌入在resx文件里面的音频资源文件
+            </summary>
+            <param name="fileInResx">在resx里面的音频文件</param>
+            <param name="path">释放到的路径</param>
+            <returns>是否释放成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.ExtractImageFileInResx(System.Drawing.Bitmap,System.String)">
+            <summary>
+            释放嵌入在resx里的图片资源文件
+            </summary>
+            <param name="image">resx里的图片资源</param>
+            <param name="path">释放到的路径</param>
+            <returns>是否释放成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.ExtractTextFileInResx(System.String,System.String)">
+            <summary>
+            释放嵌入在resx中的文本文件
+            </summary>
+            <param name="textFile">resx里的文本文件</param>
+            <param name="path">释放到路径</param>
+            <returns>是否释放成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.GetFileFormat(System.String)">
+            <summary>
+            获取文件扩展名，不带.
+            </summary>
+            <param name="filePath">文件路径</param>
+            <returns>文件扩展名，无扩展名返回null</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.GetFileMD5(System.String)">
+            <summary>
+            获取文件MD5值
+            </summary>
+            <param name="filePath">文件路径</param>
+            <returns>MD5值</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.BinaryUtils.GetFileSHA1(System.String)">
+            <summary>
+            获取文件SHA1值
+            </summary>
+            <param name="filePath">文件路径</param>
+            <returns>SHA1值</returns>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo">
+            <summary>
+            软件卸载信息类
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.#ctor">
+            <summary>
+            普通构造器
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.#ctor(System.String,System.String)">
+            <summary>
+            简单构造器
+            </summary>
+            <param name="displayName">设定显示名称</param>
+            <param name="uninstallString">设定卸载命令</param>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.DisplayName">
+            <summary>
+            显示名称
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.DisplayIcon">
+            <summary>
+            显示图标
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.DisplayVersion">
+            <summary>
+            显示版本
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.Publisher">
+            <summary>
+            发布者
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.EstimatedSize">
+            <summary>
+            软件大小（单位kb）
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.InstallPath">
+            <summary>
+            软件安装位置
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.UninstallString">
+            <summary>
+            卸载命令
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.ModifyPath">
+            <summary>
+            修改命令
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.NoModify">
+            <summary>
+            是否禁用修改
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo.NoRepair">
+            <summary>
+            是否禁用修复
+            </summary>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.Model.DirInfo">
+            <summary>
+            文件夹信息类
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.DirInfo.Size">
+            <summary>
+            文件夹大小，单位字节
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.DirInfo.FileList">
+            <summary>
+            文件夹中的所有文件列表，绝对路径
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.Model.DirInfo.addFileToList(System.String)">
+            <summary>
+            添加文件信息至文件列表
+            </summary>
+            <param name="file">文件路径</param>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.Model.DirInfo.addSize(System.Int64)">
+            <summary>
+            追加大小
+            </summary>
+            <param name="size">追加部分大小</param>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.Model.TerminalResult">
+            <summary>
+            终端实用类的输出结果
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.TerminalResult.StandardOutput">
+            <summary>
+            标准输出
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.TerminalResult.ErrorOutput">
+            <summary>
+            标准错误
+            </summary>
+        </member>
+        <member name="P:Swsk33.ReadAndWriteSharp.Model.TerminalResult.Finished">
+            <summary>
+            命令是否执行完成
+            </summary>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.NetworkUtil">
+            <summary>
+            网络实用类
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendGetRequest(System.String)">
+            <summary>
+            发送GET请求
+            </summary>
+            <param name="url">请求地址</param>
+            <returns>响应内容</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendGetRequest(System.String,System.String)">
+            <summary>
+            以一个特定的User-Agent发送GET请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="userAgent">User-Agent，可以使用Swsk33.ReadAndWriteSharp.Param下的UserAgentValue中的常量值也可以自定义</param>
+            <returns>响应内容</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendGetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            发送自定义请求头的GET请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="headers">存放自定义的请求头的键值对，其中可以设定Content-Type、User-Agent值等等</param>
+            <returns>响应内容</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendPostRequest(System.String,System.String,System.String)">
+            <summary>
+            发送POST请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="contentType">请求数据类型，可以使用Swsk33.ReadAndWriteSharp.Param下的中的ContentTypeValue类的常量值</param>
+            <param name="requestBody">请求体，注意的是不同的内容类型有不同的请求体格式，例如application/x-www-form-urlencoded中请求体通常是：键1=值1&amp;键2=值2&amp;...</param>
+            <returns>响应内容</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendPostRequest(System.String,System.String,System.String,System.String)">
+            <summary>
+            以一个特定的User-Agent发送POST请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="userAgent">User-Agent，可以使用Swsk33.ReadAndWriteSharp.Param下的UserAgentValue中的常量值也可以自定义</param>
+            <param name="contentType">请求数据类型，可以使用Swsk33.ReadAndWriteSharp.Param下的中的ContentTypeValue类的常量值</param>
+            <param name="requestBody">请求体，注意的是不同的内容类型有不同的请求体格式，例如application/x-www-form-urlencoded中请求体通常是：键1=值1&amp;键2=值2&amp;...</param>
+            <returns>响应内容</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendPostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            发送自定义请求头的POST请求
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="headers">存放自定义的请求头的键值对，其中可以设定Content-Type、User-Agent值等等</param>
+            <param name="requestBody">请求体，注意的是不同的内容类型有不同的请求体格式，例如application/x-www-form-urlencoded中请求体通常是：键1=值1&amp;键2=值2&amp;...</param>
+            <returns>响应内容</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.DownloadFile(System.String,System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="url">下载地址</param>
+            <param name="filePath">文件保存位置，已存在将覆盖</param>
+            <returns>是否下载成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.DownloadFile(System.String,System.String,System.String)">
+            <summary>
+            以一个特定的User-Agent下载文件
+            </summary>
+            <param name="url">下载地址</param>
+            <param name="userAgent">User-Agent，可以使用Swsk33.ReadAndWriteSharp.Param下的UserAgentValue中的常量值也可以自定义</param>
+            <param name="filePath">文件保存位置，已存在将覆盖</param>
+            <returns>是否下载成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.DownloadFile(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            以一个特定的请求头下载文件
+            </summary>
+            <param name="url">下载地址</param>
+            /// <param name="headers">存放自定义的请求头的键值对，其中可以设定Content-Type、User-Agent值等等</param>
+            <param name="filePath">文件保存位置，已存在将覆盖</param>
+            <returns>是否下载成功</returns>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.Param.ContentTypeValue">
+            <summary>
+            网络请求类的请求内容类型常量值
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.ContentTypeValue.FORM_URLENCODED">
+            <summary>
+            默认HTML表单
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.ContentTypeValue.XHTML">
+            <summary>
+            XHTML格式
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.ContentTypeValue.XML">
+            <summary>
+            XML格式
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.ContentTypeValue.JSON">
+            <summary>
+            JSON格式
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.ContentTypeValue.MULTIPART_FORM">
+            <summary>
+            文件表单格式
+            </summary>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.Param.UserAgentValue">
+            <summary>
+            网络请求类中的常用UA值
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.UserAgentValue.INTERNET_EXPLORER">
+            <summary>
+            Internet Explorer浏览器（最新）
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.UserAgentValue.INTERNET_EXPLORER_8">
+            <summary>
+            IE8浏览器（Internet Explorer老版本）
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.UserAgentValue.MICROSOFT_EDGE">
+            <summary>
+            微软Edge浏览器
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.UserAgentValue.CHROME">
+            <summary>
+            Google Chrome浏览器
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.UserAgentValue.FIREFOX">
+            <summary>
+            Mozilla Firefox浏览器
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.UserAgentValue.OPERA">
+            <summary>
+            Opera浏览器
+            </summary>
+        </member>
+        <member name="F:Swsk33.ReadAndWriteSharp.Param.UserAgentValue.SAFARI">
+            <summary>
+            Safari浏览器
+            </summary>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.RegUtils">
+            <summary>
+            注册表实用类
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.RegUtils.IsItemExists(Microsoft.Win32.RegistryKey,System.String)">
+            <summary>
+            判断注册表某一项是否存在
+            </summary>
+            <param name="mainKey">主键，例如HKEY_LOCAL_MACHINE表示为Registry.LocalMachine</param>
+            <param name="itemName">完整项名</param>
+            <returns>项是否存在</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.RegUtils.IsValueExists(Microsoft.Win32.RegistryKey,System.String,System.String)">
+            <summary>
+            判断注册表某一项的某个值是否存在
+            </summary>
+            <param name="mainKey">主键，例如HKEY_LOCAL_MACHINE表示为Registry.LocalMachine</param>
+            <param name="itemName">完整项名</param>
+            <param name="valueName">值的名称</param>
+            <returns>值是否存在</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.RegUtils.OperateBootOption(System.String,System.String,System.Boolean)">
+            <summary>
+            添加/移除开机启动项
+            </summary>
+            <param name="name">启动项名</param>
+            <param name="exec">启动项执行的命令，可以是可执行文件绝对路径，也可以是命令+参数。如果是移除操作此项无效</param>
+            <param name="isAddOption">此值为true时则进行添加相应启动项，值为false时则为移除相应启动项</param>
+            <returns>是否操作成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.RegUtils.OperateFileOrDirRightMenu(System.String,System.String,System.Boolean)">
+            <summary>
+            添加/移除文件或者文件夹右键菜单
+            </summary>
+            <param name="name">右键菜单显示名</param>
+            <param name="exec">执行命令，如果是移除操作此项无效（一般是"可执行文件路径" "参数"的格式，此处在编程时可以写作：\"可执行文件路径\" \"参数\"，其中参数中右键被选中的文件表示为"%l"</param>
+            <param name="isAddOption">此值为true时则进行添加相应项，值为false时则为移除相应项</param>
+            <returns>是否操作成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.RegUtils.OperateFileOrDirRightMenu(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            添加/移除文件或者文件夹右键菜单，且在添加操作时指定其图标
+            </summary>
+            <param name="name">右键菜单显示名</param>
+            <param name="iconPath">图标文件位置，可以是ico文件也可以是exe可执行文件位置，如果是移除操作此项无效</param>
+            <param name="exec">执行命令，如果是移除操作此项无效（一般是"可执行文件路径" "参数"的格式，此处在编程时可以写作：\"可执行文件路径\" \"参数\"，其中参数中右键被选中的文件表示为"%l"</param>
+            <param name="isAddOption">此值为true时则进行添加相应项，值为false时则为移除相应项</param>
+            <returns>是否操作成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.RegUtils.OperateDirectoryBackgroundMenu(System.String,System.String,System.Boolean)">
+            <summary>
+            添加/移除文件夹背景/桌面右键菜单
+            </summary>
+            <param name="name">右键菜单名</param>
+            <param name="exec">执行命令，最好用双引号包围，如果是移除操作此项无效</param>
+            <param name="isAddOption">此值为true时则进行添加相应项，值为false时则为移除相应项</param>
+            <returns>是否操作成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.RegUtils.OperateDirectoryBackgroundMenu(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            添加/移除文件夹背景/桌面右键菜单，且在添加操作时指定其图标
+            </summary>
+            <param name="name">右键菜单名</param>
+            <param name="iconPath">图标文件位置，可以是ico文件也可以是exe可执行文件位置，如果是移除操作此项无效</param>
+            <param name="exec">执行命令，最好用双引号包围，如果是移除操作此项无效</param>
+            <param name="isAddOption">此值为true时则进行添加相应项，值为false时则为移除相应项</param>
+            <returns>是否操作成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.RegUtils.OperateAppUninstallItem(Swsk33.ReadAndWriteSharp.Model.AppUninstallInfo,System.Boolean)">
+            <summary>
+            添加/删除应用程序卸载信息条目
+            </summary>
+            <param name="appInfo">应用程序卸载信息实例，位于Swsk33.ReadAndWriteSharp.Model下，先实例化AppUninstallInfo类并设定其中的各个参数信息，然后传入，添加操作时其中除了应用程序显示名称和卸载命令之外都可以缺省，如果是移除操作就只需要设定其中的应用程序显示名称</param>
+            <param name="isAddOption">此值为true时则进行添加相应项，值为false时则为移除相应项</param>
+            <returns>是否操作成功</returns>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.TerminalUtils">
+            <summary>
+            终端实用类
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TerminalUtils.RunCommand(System.String,System.String)">
+            <summary>
+            调用命令行并获取执行结果，该方法为同步方法，会堵塞线程
+            </summary>
+            <param name="command">命令</param>
+            <param name="args">参数</param>
+            <returns>命令输出结果，为string数组，数组的第一个为标准输出流，第二个为标准错误流</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TerminalUtils.RunCommandAsynchronously(System.String,System.String,Swsk33.ReadAndWriteSharp.Model.TerminalResult)">
+            <summary>
+            异步执行命令行并将输出结果实时储存在一个TerminalResult类型的实例中
+            </summary>
+            <param name="command">调用命令</param>
+            <param name="args">命令参数</param>
+            <param name="result">TerminalResult类型的实例，位于Swsk33.ReadAndWriteSharp.Model下，用于实时存放命令行的输出结果，先实例化一个TerminalResult对象并传入，然后可以在主线程实时获取结果</param>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.TextFileReader">
+            <summary>
+            文本文件读取器
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileReader.GetFileLine(System.String)">
+            <summary>
+            读取文本文件的行数
+            </summary>
+            <param name="filePath">待读取文件</param>
+            <returns>行数</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileReader.ReadSpecificLine(System.String,System.Int32)">
+            <summary>
+            读取文本文件指定行
+            </summary>
+            <param name="filePath">待读取文件路径</param>
+            <param name="line">指定行</param>
+            <returns>读取结果</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileReader.ReadSpecificLine(System.String,System.Int32,System.Text.Encoding)">
+            <summary>
+            使用特定的编码读取文本文档指定行
+            </summary>
+            <param name="filePath">待读取文件路径</param>
+            <param name="line">指定行</param>
+            <param name="encoding">指定编码。例如GBK可填入Encoding.GetEncoding("gbk")，UTF8填入Encoding.GetEncoding("utf-8")</param>
+            <returns>读取结果</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileReader.ReadSpecificRange(System.String,System.Int32,System.Int32)">
+            <summary>
+            读取指定行数范围内的内容并以字符串形式储存，包含起始行和终止行
+            </summary>
+            <param name="filePath">待读取文件</param>
+            <param name="start">起始行</param>
+            <param name="end">终止行</param>
+            <returns>读取结果</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileReader.ReadSpecificRange(System.String,System.Int32,System.Int32,System.Text.Encoding)">
+            <summary>
+            以指定的编码读取指定行数范围内的内容并以字符串形式储存，包含起始行和终止行
+            </summary>
+            <param name="filePath">待读取文件</param>
+            <param name="start">起始行</param>
+            <param name="end">终止行</param>
+            <param name="encoding">指定编码。例如GBK可填入Encoding.GetEncoding("gbk")，UTF8填入Encoding.GetEncoding("utf-8")</param>
+            <returns>读取结果</returns>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.TextFileWriter">
+            <summary>
+            文本文件写入器
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileWriter.ReplaceSpecificLine(System.String,System.String,System.Int32)">
+            <summary>
+            用指定内容替换文件指定行
+            </summary>
+            <param name="filePath">文件路径</param>
+            <param name="content">替换内容</param>
+            <param name="line">指定行</param>
+            <returns>是否替换成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileWriter.ReplaceSpecificLine(System.String,System.String,System.Int32,System.Text.Encoding)">
+            <summary>
+            使用指定的字符编码，用指定内容替换文件指定行
+            </summary>
+            <param name="filePath">文件路径</param>
+            <param name="content">替换内容</param>
+            <param name="line">指定行</param>
+            <param name="encoding">指定编码。例如GBK可填入Encoding.GetEncoding("gbk")，UTF8填入Encoding.GetEncoding("utf-8")</param>
+            <returns>是否替换成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileWriter.AppendText(System.String,System.String)">
+            <summary>
+            向文本文件末尾追加文本
+            </summary>
+            <param name="filePath">待写入文件</param>
+            <param name="content">追加内容</param>
+            <returns>是否追加成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileWriter.AppendText(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            使用指定的字符编码，向文本文件末尾追加文本
+            </summary>
+            <param name="filePath">待写入文件</param>
+            <param name="content">追加内容</param>
+            <param name="encoding">指定编码。例如GBK可填入Encoding.GetEncoding("gbk")，UTF8填入Encoding.GetEncoding("utf-8")</param>
+            <returns>是否追加成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileWriter.InsertText(System.String,System.String,System.Int32)">
+            <summary>
+            在指定行之后插入一行指定文本
+            </summary>
+            <param name="filePath">待写入文件</param>
+            <param name="content">插入的内容</param>
+            <param name="line">指定插入在第几行之后，若该值为0则插入至第一行之前</param>
+            <returns>是否插入成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileWriter.InsertText(System.String,System.String,System.Int32,System.Text.Encoding)">
+            <summary>
+            使用指定字符编码，在指定行之后插入一行指定文本
+            </summary>
+            <param name="filePath">待写入文件</param>
+            <param name="content">插入的内容</param>
+            <param name="line">指定插入在第几行之后，若该值为0则插入至第一行之前</param>
+            <param name="encoding">指定编码。例如GBK可填入Encoding.GetEncoding("gbk")，UTF8填入Encoding.GetEncoding("utf-8")</param>
+            <returns>是否插入成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileWriter.RemoveSpecificLine(System.String,System.Int32)">
+            <summary>
+            移除文件指定行内容
+            </summary>
+            <param name="filePath">待操作文件路径</param>
+            <param name="line">待移除行</param>
+            <returns>是否移除成功</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextFileWriter.ClearAll(System.String)">
+            <summary>
+            将指定文件内容清空
+            </summary>
+            <param name="filePath">待清空的文件</param>
+            <returns>是否清空成功</returns>
+        </member>
+    </members>
+</doc>
