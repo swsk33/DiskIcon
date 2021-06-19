@@ -1,7 +1,9 @@
 ﻿using DiskIcon.Model;
+using DiskIcon.Param;
 using Swsk33.ReadAndWriteSharp;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -35,6 +37,11 @@ namespace DiskIcon
 		public static Config GlobalConfig;
 
 		/// <summary>
+		/// 运行模式
+		/// </summary>
+		public static readonly AppMode appMode;
+
+		/// <summary>
 		/// 初始化
 		/// </summary>
 		private static void Initialize()
@@ -62,7 +69,7 @@ namespace DiskIcon
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			//Application.Run(new MainGUI());
-			new ImageEditFrame().initEditFrame(BackgroundImage.setbg);
+			new ImageEditFrame().initEditFrame(Image.FromFile(@"C:\Users\swsk33\Pictures\头像与图标\init.jpg"));
 			Application.Run();
 		}
 	}

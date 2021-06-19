@@ -38,6 +38,7 @@ namespace DiskIcon
 			this.savePng = new System.Windows.Forms.Button();
 			this.circleMode = new System.Windows.Forms.CheckBox();
 			this.close = new System.Windows.Forms.Button();
+			this.cropTip = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.inputImage)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -136,6 +137,7 @@ namespace DiskIcon
 			this.saveIcon.TabIndex = 6;
 			this.saveIcon.Text = "裁剪并另存为ico";
 			this.saveIcon.UseVisualStyleBackColor = false;
+			this.saveIcon.Click += new System.EventHandler(this.saveIcon_Click);
 			// 
 			// savePng
 			// 
@@ -154,6 +156,7 @@ namespace DiskIcon
 			this.savePng.TabIndex = 6;
 			this.savePng.Text = "裁剪并另存为png";
 			this.savePng.UseVisualStyleBackColor = false;
+			this.savePng.Click += new System.EventHandler(this.savePng_Click);
 			// 
 			// circleMode
 			// 
@@ -187,12 +190,26 @@ namespace DiskIcon
 			this.close.UseVisualStyleBackColor = false;
 			this.close.Click += new System.EventHandler(this.close_Click);
 			// 
+			// cropTip
+			// 
+			this.cropTip.AutoSize = true;
+			this.cropTip.BackColor = System.Drawing.Color.Transparent;
+			this.cropTip.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.cropTip.ForeColor = System.Drawing.Color.Red;
+			this.cropTip.Location = new System.Drawing.Point(258, 392);
+			this.cropTip.Name = "cropTip";
+			this.cropTip.Size = new System.Drawing.Size(113, 24);
+			this.cropTip.TabIndex = 9;
+			this.cropTip.Text = "拖动右下角调整大小\r\n拖动裁剪框调整位置";
+			this.cropTip.Visible = false;
+			// 
 			// ImageEditFrame
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImage = global::DiskIcon.BackgroundImage.cutbg;
 			this.ClientSize = new System.Drawing.Size(385, 490);
+			this.Controls.Add(this.cropTip);
 			this.Controls.Add(this.close);
 			this.Controls.Add(this.circleMode);
 			this.Controls.Add(this.apply);
@@ -230,5 +247,6 @@ namespace DiskIcon
 		private System.Windows.Forms.Button savePng;
 		private System.Windows.Forms.CheckBox circleMode;
 		private System.Windows.Forms.Button close;
+		private System.Windows.Forms.Label cropTip;
 	}
 }

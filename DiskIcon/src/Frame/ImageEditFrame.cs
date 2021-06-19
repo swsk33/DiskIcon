@@ -1,6 +1,8 @@
 ﻿using DiskIcon.Model;
 using DiskIcon.Util;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 
 namespace DiskIcon
@@ -43,11 +45,6 @@ namespace DiskIcon
 		private int imageInBoxHeight;
 
 		/// <summary>
-		/// 原始图片
-		/// </summary>
-		private Image originImage;
-
-		/// <summary>
 		/// 裁剪框
 		/// </summary>
 		private CropFrame cropFrame;
@@ -55,6 +52,58 @@ namespace DiskIcon
 		public ImageEditFrame()
 		{
 			InitializeComponent();
+		}
+
+		/// <summary>
+		/// 以一个图像初始化一个裁剪框
+		/// </summary>
+		/// <param name="image">原图像</param>
+		public void initEditFrame(Image image)
+		{
+			inputImage.Image = image;
+			double ratio = (double)image.Width / image.Height;
+			//确定图片域
+			if (ratio > 1)
+			{
+				imageInBoxWidth = inputImage.Width;
+				imageInBoxHeight = (int)(imageInBoxWidth / ratio);
+				imageInBoxX = 0;
+				imageInBoxY = (inputImage.Height - imageInBoxHeight) / 2;
+			}
+			else
+			{
+				imageInBoxHeight = inputImage.Height;
+				imageInBoxWidth = (int)(imageInBoxHeight * ratio);
+				imageInBoxY = 0;
+				imageInBoxX = (inputImage.Width - imageInBoxWidth) / 2;
+			}
+			cropFrame = new CropFrame(inputImage, new Rectangle(imageInBoxX, imageInBoxY, imageInBoxWidth, imageInBoxHeight));
+			Show();
+		}
+
+		/// <summary>
+		/// 根据裁剪框位置，获取相对于原图的裁剪区的图片
+		/// </summary>
+		/// <returns>裁剪部分图片</returns>
+		private Image getCropImage()
+		{
+			/**
+			 * 预览图中裁剪框位置及大小
+			 */
+			int XInBox = cropFrame.CropFrameOutlineRectangle.X - imageInBoxX;
+			int YInBox = cropFrame.CropFrameOutlineRectangle.Y - imageInBoxY;
+			int sideLengthInBox = cropFrame.CropFrameOutlineRectangle.Width;
+			/**
+			 * 原图对比于预览图比例
+			 */
+			double ratio = (double)inputImage.Image.Width / imageInBoxWidth;
+			/**
+			 * 计算出在原图上的裁剪区域
+			 */
+			int finalX = (int)(ratio * XInBox);
+			int finalY = (int)(ratio * YInBox);
+			int finalSideLength = (int)(ratio * sideLengthInBox);
+			return ImageUtils.CropImage(inputImage.Image, new Rectangle(finalX, finalY, finalSideLength, finalSideLength));
 		}
 
 		private void ConfigFrame_MouseDown(object sender, MouseEventArgs e)
@@ -80,32 +129,9 @@ namespace DiskIcon
 			isMouseDown = false;
 		}
 
-		public void initEditFrame(Image image)
-		{
-			inputImage.Image = image;
-			originImage = image;
-			double ratio = (double)originImage.Width / originImage.Height;
-			//确定图片域
-			if (ratio > 1)
-			{
-				imageInBoxWidth = inputImage.Width;
-				imageInBoxHeight = (int)(imageInBoxWidth / ratio);
-				imageInBoxX = 0;
-				imageInBoxY = (inputImage.Height - imageInBoxHeight) / 2;
-			}
-			else
-			{
-				imageInBoxHeight = inputImage.Height;
-				imageInBoxWidth = (int)(imageInBoxHeight * ratio);
-				imageInBoxY = 0;
-				imageInBoxX = (inputImage.Width - imageInBoxWidth) / 2;
-			}
-			cropFrame = new CropFrame(inputImage, new Rectangle(imageInBoxX, imageInBoxY, imageInBoxWidth, imageInBoxHeight));
-			Show();
-		}
-
 		private void start_Click(object sender, System.EventArgs e)
 		{
+			cropTip.Visible = true;
 			start.Enabled = false;
 			circleMode.Enabled = true;
 			saveIcon.Enabled = true;
@@ -131,6 +157,48 @@ namespace DiskIcon
 		private void close_Click(object sender, System.EventArgs e)
 		{
 			Close();
+		}
+
+		private void saveIcon_Click(object sender, System.EventArgs e)
+		{
+			SaveFileDialog dialog = new SaveFileDialog();
+			dialog.Title = "保存ico文件至";
+			dialog.Filter = "图标文件(*.ico)|*.ico";
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				Image icon = getCropImage();
+				bool success = ImageUtils.SaveToIcon(icon, dialog.FileName, Program.GlobalConfig.IconSize);
+				icon.Dispose();
+				if (success)
+				{
+					MessageBox.Show("已保存ico文件至：" + dialog.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					MessageBox.Show("保存失败！请检查是否有写入权限！", "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+		}
+
+		private void savePng_Click(object sender, System.EventArgs e)
+		{
+			SaveFileDialog dialog = new SaveFileDialog();
+			dialog.Title = "保存png文件至";
+			dialog.Filter = "便携式网络图形(*.png)|*.png";
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				Image image = getCropImage();
+				image.Save(dialog.FileName, ImageFormat.Png);
+				image.Dispose();
+				if (File.Exists(dialog.FileName))
+				{
+					MessageBox.Show("已保存png文件至：" + dialog.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					MessageBox.Show("保存失败！请检查是否有写入权限！", "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
 		}
 	}
 }

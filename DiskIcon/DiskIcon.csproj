@@ -84,6 +84,7 @@
       <DependentUpon>MainGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Model\Config.cs" />
+    <Compile Include="src\Param\AppMode.cs" />
     <Compile Include="src\Param\CropFrameStatus.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

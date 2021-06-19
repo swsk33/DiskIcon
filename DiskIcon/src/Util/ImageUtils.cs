@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace DiskIcon.Util
 {
@@ -15,7 +17,51 @@ namespace DiskIcon.Util
 		/// <returns>裁剪后图片</returns>
 		public static Image CropImage(Image originImage, Rectangle region)
 		{
-			return new Bitmap(originImage).Clone(region, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+			Bitmap result = new Bitmap(region.Width, region.Height);
+			Graphics graphics = Graphics.FromImage(result);
+			graphics.DrawImage(originImage, 0, 0, region, GraphicsUnit.Pixel);
+			return result;
+		}
+
+		/// <summary>
+		/// 图片保存为ico文件
+		/// </summary>
+		/// <param name="origin">原图片</param>
+		/// <param name="destination">输出ico文件路径</param>
+		/// <param name="sideLength">图标边长</param>
+		/// <returns>是否保存成功</returns>
+		public static bool SaveToIcon(Image origin, string destination, int sideLength)
+		{
+			Image image = new Bitmap(origin, new Size(sideLength, sideLength));
+			MemoryStream bitMapStream = new MemoryStream();
+			MemoryStream iconStream = new MemoryStream();
+			image.Save(bitMapStream, ImageFormat.Png);
+			BinaryWriter iconWriter = new BinaryWriter(iconStream);
+			iconWriter.Write((short)0);
+			iconWriter.Write((short)1);
+			iconWriter.Write((short)1);
+			iconWriter.Write((byte)image.Width);
+			iconWriter.Write((byte)image.Height);
+			iconWriter.Write((short)0);
+			iconWriter.Write((short)0);
+			iconWriter.Write((short)32);
+			iconWriter.Write((int)bitMapStream.Length);
+			iconWriter.Write(22);
+			//写入图像体至目标图标内存流
+			iconWriter.Write(bitMapStream.ToArray());
+			//保存流，并将流指针定位至头部以Icon对象进行读取输出为文件
+			iconWriter.Flush();
+			iconWriter.Seek(0, SeekOrigin.Begin);
+			Stream iconFileStream = new FileStream(destination, FileMode.Create);
+			Icon icon = new Icon(iconStream);
+			icon.Save(iconFileStream);
+			iconFileStream.Close();
+			iconWriter.Close();
+			iconStream.Close();
+			bitMapStream.Close();
+			icon.Dispose();
+			image.Dispose();
+			return File.Exists(destination);
 		}
 	}
 }
