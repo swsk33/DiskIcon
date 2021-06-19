@@ -10,7 +10,6 @@ namespace DiskIcon.Model
 	/// </summary>
 	public class CropFrame
 	{
-		private bool isCropping;
 
 		private Control drawComponent;
 
@@ -18,7 +17,7 @@ namespace DiskIcon.Model
 
 		private Pen cropFrameOutlinePen;
 
-		private Pen corpFrameInnerPen;
+		private Pen cropFrameInnerPen;
 
 		private Brush cropFrameDraftBrush;
 
@@ -27,6 +26,16 @@ namespace DiskIcon.Model
 		private Rectangle cropFrameDraftPoint;
 
 		private Rectangle restrictedArea;
+
+		/// <summary>
+		/// 是否正在裁剪
+		/// </summary>
+		private bool isCropping;
+
+		/// <summary>
+		/// 是否正在调整裁剪框大小
+		/// </summary>
+		private bool isSizing;
 
 		/// <summary>
 		/// 是否划定裁剪框的移动限定区
@@ -54,11 +63,6 @@ namespace DiskIcon.Model
 		private bool showInner;
 
 		/// <summary>
-		/// 是否正在裁剪
-		/// </summary>
-		public bool IsCropping { get => isCropping; set => isCropping = value; }
-
-		/// <summary>
 		/// 裁剪框绘制器
 		/// </summary>
 		public Graphics CropFrameBody { get => cropFrameBody; set => cropFrameBody = value; }
@@ -71,7 +75,7 @@ namespace DiskIcon.Model
 		/// <summary>
 		/// 裁剪框内部圆轮廓画笔
 		/// </summary>
-		public Pen CorpFrameInnerPen { get => corpFrameInnerPen; set => corpFrameInnerPen = value; }
+		public Pen CropFrameInnerPen { get => cropFrameInnerPen; set => cropFrameInnerPen = value; }
 
 		/// <summary>
 		/// 裁剪框拖动点绘制笔刷
@@ -138,26 +142,64 @@ namespace DiskIcon.Model
 		{
 			if (isCropping)
 			{
-				if (GetCropFrameStatus(e) == CropFrameStatus.DRAFTING_SIZE)
-				{
+				if (GetCropFrameStatus(e) == CropFrameStatus.AT_DRAFT_POINT || isSizing)
+				{ //在调整裁剪框大小时，允许鼠标到裁剪框外部
 					drawComponent.Cursor = Cursors.SizeNWSE;
 					if (isMouseDown)
 					{
-
-					}
-				}
-				else if (GetCropFrameStatus(e) == CropFrameStatus.DRAFTING_MOVE)
-				{
-					drawComponent.Cursor = Cursors.Cross;
-					if (isMouseDown)
-					{
+						isSizing = true;
+						int x = cropFrameOutlineRectangle.X;
+						int y = cropFrameOutlineRectangle.Y;
+						int sideLength = cropFrameOutlineRectangle.Width + (e.X - cropFrameOutlineRectangle.X - cropFrameOutlineRectangle.Width + e.Y - cropFrameOutlineRectangle.Y - cropFrameOutlineRectangle.Height) / 2;
 						if (doRestrict)
 						{
-
+							if (x + sideLength > restrictedArea.Right)
+							{
+								sideLength = restrictedArea.Right - x - (int)cropFrameOutlinePen.Width;
+							}
+							if (y + sideLength > restrictedArea.Bottom)
+							{
+								sideLength = restrictedArea.Bottom - y - (int)cropFrameOutlinePen.Width;
+							}
+							ProceedCutBox(x, y, sideLength, showInner);
 						}
 						else
 						{
-							ProceedCutBox(e.X - mouseAtX, e.Y - mouseAtY, cropFrameOutlineRectangle.Width, showInner);
+							ProceedCutBox(x, y, sideLength, showInner);
+						}
+					}
+				}
+				else if (GetCropFrameStatus(e) == CropFrameStatus.IN_CROP)
+				{
+					drawComponent.Cursor = Cursors.Cross;
+					if (!isSizing && isMouseDown)
+					{ //只有在没有调整大小的时候才能拖动
+						int x = e.X - mouseAtX;
+						int y = e.Y - mouseAtY;
+						int sideLength = cropFrameOutlineRectangle.Width;
+						if (doRestrict)
+						{
+							if (x < restrictedArea.X)
+							{
+								x = restrictedArea.X;
+							}
+							else if (x + sideLength > restrictedArea.Right)
+							{
+								x = restrictedArea.Right - sideLength - (int)cropFrameOutlinePen.Width;
+							}
+							if (y < restrictedArea.Y)
+							{
+								y = restrictedArea.Y;
+							}
+							else if (y + sideLength > restrictedArea.Bottom)
+							{
+								y = restrictedArea.Bottom - sideLength - (int)cropFrameOutlinePen.Width;
+							}
+							ProceedCutBox(x, y, sideLength, showInner);
+						}
+						else
+						{
+							ProceedCutBox(x, y, sideLength, showInner);
 						}
 					}
 				}
@@ -173,6 +215,7 @@ namespace DiskIcon.Model
 			if (isCropping)
 			{
 				isMouseDown = false;
+				isSizing = false;
 			}
 		}
 
@@ -195,8 +238,8 @@ namespace DiskIcon.Model
 			cropFrameOutlineRectangle = new Rectangle(x, y, sideLength, sideLength);
 			if (showInnerCircle)
 			{
-				corpFrameInnerPen = new Pen(Color.Blue, 1);
-				cropFrameBody.DrawEllipse(corpFrameInnerPen, cropFrameOutlineRectangle);
+				cropFrameInnerPen = new Pen(Color.Blue, 1);
+				cropFrameBody.DrawEllipse(cropFrameInnerPen, cropFrameOutlineRectangle);
 			}
 			cropFrameDraftBrush = new SolidBrush(Color.Purple);
 			cropFrameDraftPoint = new Rectangle(x + cropFrameOutlineRectangle.Width - 3, y + cropFrameOutlineRectangle.Height - 3, 6, 6);
@@ -221,13 +264,13 @@ namespace DiskIcon.Model
 		/// <returns>裁剪框的状态常量</returns>
 		public CropFrameStatus GetCropFrameStatus(MouseEventArgs e)
 		{
-			if (e.X >= cropFrameDraftPoint.X && e.X <= cropFrameDraftPoint.X + cropFrameDraftPoint.Width && e.Y >= cropFrameDraftPoint.Y && e.Y <= cropFrameDraftPoint.Y + cropFrameDraftPoint.Height)
+			if (e.X >= cropFrameDraftPoint.X && e.X <= cropFrameDraftPoint.Right && e.Y >= cropFrameDraftPoint.Y && e.Y <= cropFrameDraftPoint.Bottom)
 			{
-				return CropFrameStatus.DRAFTING_SIZE;
+				return CropFrameStatus.AT_DRAFT_POINT;
 			}
-			else if (e.X >= cropFrameOutlineRectangle.X && e.X <= cropFrameOutlineRectangle.X + cropFrameOutlineRectangle.Width && e.Y >= cropFrameOutlineRectangle.Y && e.Y <= cropFrameOutlineRectangle.Y + cropFrameOutlineRectangle.Height)
+			else if (e.X >= cropFrameOutlineRectangle.X && e.X <= cropFrameOutlineRectangle.Right && e.Y >= cropFrameOutlineRectangle.Y && e.Y <= cropFrameOutlineRectangle.Bottom)
 			{
-				return CropFrameStatus.DRAFTING_MOVE;
+				return CropFrameStatus.IN_CROP;
 			}
 			else
 			{

@@ -6,13 +6,13 @@
 	public enum CropFrameStatus
 	{
 		/// <summary>
-		/// 正在调整大小
+		/// 鼠标在拖动点上
 		/// </summary>
-		DRAFTING_SIZE,
+		AT_DRAFT_POINT,
 		/// <summary>
-		/// 正在被移动
+		/// 鼠标在裁剪框内部
 		/// </summary>
-		DRAFTING_MOVE,
+		IN_CROP,
 		/// <summary>
 		/// 鼠标不在裁剪框内
 		/// </summary>

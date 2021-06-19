@@ -59,7 +59,6 @@ namespace DiskIcon
 		public ImageEditFrame()
 		{
 			InitializeComponent();
-			cropFrame = new CropFrame(inputImg);
 		}
 
 		private void ConfigFrame_MouseDown(object sender, MouseEventArgs e)
@@ -106,6 +105,7 @@ namespace DiskIcon
 				imgY = 0;
 				imgX = (inputImg.Width - imgWidth) / 2;
 			}
+			cropFrame = new CropFrame(inputImg, new Rectangle(imgX, imgY, imgWidth, imgHeight));
 			Show();
 		}
 
