@@ -39,7 +39,12 @@ namespace DiskIcon
 		/// <summary>
 		/// 运行模式
 		/// </summary>
-		public static AppMode appMode;
+		public static AppMode GlobalAppMode;
+
+		/// <summary>
+		/// 快速调用模式下的图片地址
+		/// </summary>
+		public static string QuickModeImage;
 
 		/// <summary>
 		/// 初始化
@@ -76,12 +81,17 @@ namespace DiskIcon
 			 */
 			if (args.Length == 0)
 			{
-				appMode = AppMode.MAIN_GUI;
+				GlobalAppMode = AppMode.MAIN_GUI;
 				Application.Run(new MainGUI());
 			}
 			else
 			{
-
+				if (args[0].Equals("i"))
+				{
+					QuickModeImage = args[1];
+					new QuickSetIcon().Show();
+					Application.Run();
+				}
 			}
 		}
 	}

@@ -123,6 +123,7 @@ namespace DiskIcon
 			this.ok.TabIndex = 6;
 			this.ok.Text = "确认";
 			this.ok.UseVisualStyleBackColor = false;
+			this.ok.Click += new System.EventHandler(this.ok_Click);
 			// 
 			// QuickSetIcon
 			// 

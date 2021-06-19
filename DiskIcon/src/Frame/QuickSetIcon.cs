@@ -64,5 +64,10 @@ namespace DiskIcon
 				DiskValue.Text = selectPath.Substring(0, selectPath.IndexOf("\\") + 1);
 			}
 		}
+
+		private void ok_Click(object sender, EventArgs e)
+		{
+			//new ImageEditFrame().initEditFrame(); 
+		}
 	}
 }

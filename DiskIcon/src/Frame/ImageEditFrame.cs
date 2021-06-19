@@ -185,7 +185,7 @@ namespace DiskIcon
 
 		private void close_Click(object sender, System.EventArgs e)
 		{
-			if (Program.appMode == AppMode.MAIN_GUI)
+			if (Program.GlobalAppMode == AppMode.MAIN_GUI)
 			{
 				Dispose();
 			}
@@ -239,7 +239,7 @@ namespace DiskIcon
 
 		private void ImageEditFrame_Load(object sender, System.EventArgs e)
 		{
-			if (Program.appMode == AppMode.IMAGE_CROP_MODE)
+			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
 			{
 				doNotCrop.Visible = false;
 				apply.Visible = false;

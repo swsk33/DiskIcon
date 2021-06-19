@@ -95,7 +95,9 @@ namespace DiskIcon
 				MessageBox.Show("请指定驱动器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-			new ImageEditFrame().initEditFrame(Image.FromFile(picPathValue.Text), diskPathValue.Text);
+			Image inputImage = Image.FromFile(picPathValue.Text);
+			new ImageEditFrame().initEditFrame(inputImage, diskPathValue.Text);
+			inputImage.Dispose();
 		}
 
 		private void clear_Click(object sender, EventArgs e)
