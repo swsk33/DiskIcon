@@ -251,6 +251,7 @@ namespace DiskIcon
 			this.about.Size = new System.Drawing.Size(78, 78);
 			this.about.TabIndex = 6;
 			this.about.UseVisualStyleBackColor = false;
+			this.about.Click += new System.EventHandler(this.about_Click);
 			// 
 			// setup
 			// 

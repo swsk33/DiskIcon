@@ -165,8 +165,16 @@ namespace DiskIcon
 			circleMode.Enabled = true;
 			saveIcon.Enabled = true;
 			savePng.Enabled = true;
-			apply.Enabled = true;
-			doNotCrop.Enabled = false;
+			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
+			{
+				applyOrDirectSaveIco.Enabled = false;
+				doNotCropOrDirectSavePng.Enabled = false;
+			}
+			else
+			{
+				applyOrDirectSaveIco.Enabled = true;
+				doNotCropOrDirectSavePng.Enabled = false;
+			}
 			int sideLength = imageInBoxHeight;
 			if (imageInBoxWidth < imageInBoxHeight)
 			{
@@ -237,44 +245,86 @@ namespace DiskIcon
 			}
 		}
 
+		private void applyOrDirectSaveIco_Click(object sender, System.EventArgs e)
+		{
+			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
+			{
+				SaveFileDialog dialog = new SaveFileDialog();
+				dialog.Title = "保存ico文件至";
+				dialog.Filter = "图标文件(*.ico)|*.ico";
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+					bool success = ImageUtils.SaveToIcon(inputImage.Image, dialog.FileName);
+					if (success)
+					{
+						MessageBox.Show("已保存ico文件至：" + dialog.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
+					else
+					{
+						MessageBox.Show("保存失败！请检查是否有写入权限！", "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+			}
+			else
+			{
+				Image icon = getCropImage();
+				loading.Visible = true;
+				Application.DoEvents();
+				new Thread(() =>
+				{
+					FileUtils.SetDiskIcon(diskPath, icon);
+					MessageBox.Show("设定图标完成！若没有立即生效，请重启电脑、重新插拔设备或者以管理员身份运行程序再试！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					loading.Visible = false;
+					icon.Dispose();
+				}).Start();
+			}
+		}
+
+		private void doNotCropOrDirectSavePng_Click(object sender, System.EventArgs e)
+		{
+			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
+			{
+				SaveFileDialog dialog = new SaveFileDialog();
+				dialog.Title = "保存png文件至";
+				dialog.Filter = "便携式网络图形(*.png)|*.png";
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+					inputImage.Image.Save(dialog.FileName, ImageFormat.Png);
+					if (File.Exists(dialog.FileName))
+					{
+						MessageBox.Show("已保存png文件至：" + dialog.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
+					else
+					{
+						MessageBox.Show("保存失败！请检查是否有写入权限！", "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+			}
+			else
+			{
+				loading.Visible = true;
+				Application.DoEvents();
+				new Thread(() =>
+				{
+					FileUtils.SetDiskIcon(diskPath, inputImage.Image);
+					MessageBox.Show("设定图标完成！若没有立即生效，请重启电脑、重新插拔设备或者以管理员身份运行程序再试！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					loading.Visible = false;
+				}).Start();
+			}
+		}
+
 		private void ImageEditFrame_Load(object sender, System.EventArgs e)
 		{
 			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
 			{
-				doNotCrop.Visible = false;
-				apply.Visible = false;
+				applyOrDirectSaveIco.Text = "直接保存为ico";
+				doNotCropOrDirectSavePng.Text = "直接保存为png";
+				applyOrDirectSaveIco.Enabled = true;
 			}
 			else
 			{
-				doNotCrop.Visible = true;
-				apply.Visible = true;
+				applyOrDirectSaveIco.Enabled = false;
 			}
-		}
-
-		private void apply_Click(object sender, System.EventArgs e)
-		{
-			Image icon = getCropImage();
-			loading.Visible = true;
-			Application.DoEvents();
-			new Thread(() =>
-			{
-				FileUtils.SetDiskIcon(diskPath, icon);
-				MessageBox.Show("设定图标完成！若没有立即生效，请重启电脑、重新插拔设备或者以管理员身份运行程序再试！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				loading.Visible = false;
-				icon.Dispose();
-			}).Start();
-		}
-
-		private void doNotCrop_Click(object sender, System.EventArgs e)
-		{
-			loading.Visible = true;
-			Application.DoEvents();
-			new Thread(() =>
-			{
-				FileUtils.SetDiskIcon(diskPath, inputImage.Image);
-				MessageBox.Show("设定图标完成！若没有立即生效，请重启电脑、重新插拔设备或者以管理员身份运行程序再试！", "完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				loading.Visible = false;
-			}).Start();
 		}
 	}
 }

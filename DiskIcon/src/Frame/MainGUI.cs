@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -103,6 +104,11 @@ namespace DiskIcon
 		private void clear_Click(object sender, EventArgs e)
 		{
 			new ClearIcon().ShowDialog();
+		}
+
+		private void about_Click(object sender, EventArgs e)
+		{
+			Process.Start("https://gitee.com/swsk33/DiskIcon");
 		}
 	}
 }

@@ -32,8 +32,8 @@ namespace DiskIcon
 			this.title = new System.Windows.Forms.Label();
 			this.inputImage = new System.Windows.Forms.PictureBox();
 			this.start = new System.Windows.Forms.Button();
-			this.doNotCrop = new System.Windows.Forms.Button();
-			this.apply = new System.Windows.Forms.Button();
+			this.doNotCropOrDirectSavePng = new System.Windows.Forms.Button();
+			this.applyOrDirectSaveIco = new System.Windows.Forms.Button();
 			this.saveIcon = new System.Windows.Forms.Button();
 			this.savePng = new System.Windows.Forms.Button();
 			this.circleMode = new System.Windows.Forms.CheckBox();
@@ -86,42 +86,42 @@ namespace DiskIcon
 			this.start.UseVisualStyleBackColor = false;
 			this.start.Click += new System.EventHandler(this.start_Click);
 			// 
-			// doNotCrop
+			// doNotCropOrDirectSavePng
 			// 
-			this.doNotCrop.BackColor = System.Drawing.Color.Transparent;
-			this.doNotCrop.Cursor = System.Windows.Forms.Cursors.Default;
-			this.doNotCrop.FlatAppearance.BorderSize = 0;
-			this.doNotCrop.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-			this.doNotCrop.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-			this.doNotCrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.doNotCrop.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.doNotCrop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.doNotCrop.Location = new System.Drawing.Point(260, 454);
-			this.doNotCrop.Name = "doNotCrop";
-			this.doNotCrop.Size = new System.Drawing.Size(112, 24);
-			this.doNotCrop.TabIndex = 6;
-			this.doNotCrop.Text = "不裁剪直接应用";
-			this.doNotCrop.UseVisualStyleBackColor = false;
-			this.doNotCrop.Click += new System.EventHandler(this.doNotCrop_Click);
+			this.doNotCropOrDirectSavePng.BackColor = System.Drawing.Color.Transparent;
+			this.doNotCropOrDirectSavePng.Cursor = System.Windows.Forms.Cursors.Default;
+			this.doNotCropOrDirectSavePng.FlatAppearance.BorderSize = 0;
+			this.doNotCropOrDirectSavePng.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+			this.doNotCropOrDirectSavePng.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+			this.doNotCropOrDirectSavePng.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.doNotCropOrDirectSavePng.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.doNotCropOrDirectSavePng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.doNotCropOrDirectSavePng.Location = new System.Drawing.Point(260, 454);
+			this.doNotCropOrDirectSavePng.Name = "doNotCropOrDirectSavePng";
+			this.doNotCropOrDirectSavePng.Size = new System.Drawing.Size(113, 24);
+			this.doNotCropOrDirectSavePng.TabIndex = 6;
+			this.doNotCropOrDirectSavePng.Text = "不裁剪直接应用";
+			this.doNotCropOrDirectSavePng.UseVisualStyleBackColor = false;
+			this.doNotCropOrDirectSavePng.Click += new System.EventHandler(this.doNotCropOrDirectSavePng_Click);
 			// 
-			// apply
+			// applyOrDirectSaveIco
 			// 
-			this.apply.BackColor = System.Drawing.Color.Transparent;
-			this.apply.Cursor = System.Windows.Forms.Cursors.Default;
-			this.apply.Enabled = false;
-			this.apply.FlatAppearance.BorderSize = 0;
-			this.apply.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-			this.apply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-			this.apply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.apply.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.apply.ForeColor = System.Drawing.Color.Fuchsia;
-			this.apply.Location = new System.Drawing.Point(260, 424);
-			this.apply.Name = "apply";
-			this.apply.Size = new System.Drawing.Size(112, 24);
-			this.apply.TabIndex = 6;
-			this.apply.Text = "裁剪并应用图标";
-			this.apply.UseVisualStyleBackColor = false;
-			this.apply.Click += new System.EventHandler(this.apply_Click);
+			this.applyOrDirectSaveIco.BackColor = System.Drawing.Color.Transparent;
+			this.applyOrDirectSaveIco.Cursor = System.Windows.Forms.Cursors.Default;
+			this.applyOrDirectSaveIco.Enabled = false;
+			this.applyOrDirectSaveIco.FlatAppearance.BorderSize = 0;
+			this.applyOrDirectSaveIco.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+			this.applyOrDirectSaveIco.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+			this.applyOrDirectSaveIco.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.applyOrDirectSaveIco.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.applyOrDirectSaveIco.ForeColor = System.Drawing.Color.Fuchsia;
+			this.applyOrDirectSaveIco.Location = new System.Drawing.Point(260, 424);
+			this.applyOrDirectSaveIco.Name = "applyOrDirectSaveIco";
+			this.applyOrDirectSaveIco.Size = new System.Drawing.Size(113, 24);
+			this.applyOrDirectSaveIco.TabIndex = 6;
+			this.applyOrDirectSaveIco.Text = "裁剪并应用图标";
+			this.applyOrDirectSaveIco.UseVisualStyleBackColor = false;
+			this.applyOrDirectSaveIco.Click += new System.EventHandler(this.applyOrDirectSaveIco_Click);
 			// 
 			// saveIcon
 			// 
@@ -228,8 +228,8 @@ namespace DiskIcon
 			this.Controls.Add(this.cropTip);
 			this.Controls.Add(this.close);
 			this.Controls.Add(this.circleMode);
-			this.Controls.Add(this.apply);
-			this.Controls.Add(this.doNotCrop);
+			this.Controls.Add(this.applyOrDirectSaveIco);
+			this.Controls.Add(this.doNotCropOrDirectSavePng);
 			this.Controls.Add(this.savePng);
 			this.Controls.Add(this.saveIcon);
 			this.Controls.Add(this.start);
@@ -259,8 +259,8 @@ namespace DiskIcon
 		private System.Windows.Forms.Label title;
 		private System.Windows.Forms.PictureBox inputImage;
 		private System.Windows.Forms.Button start;
-		private System.Windows.Forms.Button doNotCrop;
-		private System.Windows.Forms.Button apply;
+		private System.Windows.Forms.Button doNotCropOrDirectSavePng;
+		private System.Windows.Forms.Button applyOrDirectSaveIco;
 		private System.Windows.Forms.Button saveIcon;
 		private System.Windows.Forms.Button savePng;
 		private System.Windows.Forms.CheckBox circleMode;
