@@ -19,7 +19,7 @@ namespace DiskIcon.Util
 		{
 			Bitmap result = new Bitmap(region.Width, region.Height);
 			Graphics graphics = Graphics.FromImage(result);
-			graphics.DrawImage(originImage, 0, 0, region, GraphicsUnit.Pixel);
+			graphics.DrawImage(originImage, new Rectangle(0, 0, region.Width, region.Height), region, GraphicsUnit.Pixel);
 			return result;
 		}
 

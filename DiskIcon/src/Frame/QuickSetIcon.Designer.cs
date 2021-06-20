@@ -29,6 +29,7 @@ namespace DiskIcon
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuickSetIcon));
 			this.close = new System.Windows.Forms.Button();
 			this.title = new System.Windows.Forms.Label();
 			this.mainTitle = new System.Windows.Forms.Label();
@@ -138,11 +139,10 @@ namespace DiskIcon
 			this.Controls.Add(this.title);
 			this.Controls.Add(this.close);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "QuickSetIcon";
-			this.ShowIcon = false;
-			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "QuickSetIcon";
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDownEvent);

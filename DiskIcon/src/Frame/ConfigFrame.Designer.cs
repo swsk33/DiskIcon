@@ -29,6 +29,7 @@ namespace DiskIcon
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigFrame));
 			this.title = new System.Windows.Forms.Label();
 			this.iconSizeLabel = new System.Windows.Forms.Label();
 			this.IconSizeValue = new System.Windows.Forms.ComboBox();
@@ -175,11 +176,10 @@ namespace DiskIcon
 			this.Controls.Add(this.iconSizeLabel);
 			this.Controls.Add(this.title);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ConfigFrame";
-			this.ShowIcon = false;
-			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "图标修改工具-设置";
 			this.Load += new System.EventHandler(this.ConfigFrame_Load);

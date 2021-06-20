@@ -29,6 +29,7 @@ namespace DiskIcon
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageEditFrame));
 			this.title = new System.Windows.Forms.Label();
 			this.inputImage = new System.Windows.Forms.PictureBox();
 			this.start = new System.Windows.Forms.Button();
@@ -236,11 +237,10 @@ namespace DiskIcon
 			this.Controls.Add(this.title);
 			this.Controls.Add(this.inputImage);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ImageEditFrame";
-			this.ShowIcon = false;
-			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "ImageEditFrame";
 			this.Load += new System.EventHandler(this.ImageEditFrame_Load);
