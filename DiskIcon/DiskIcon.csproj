@@ -105,6 +105,7 @@
     </Compile>
     <Compile Include="src\Util\FileUtils.cs" />
     <Compile Include="src\Util\ImageUtils.cs" />
+    <Compile Include="src\Util\ProgramUtils.cs" />
     <EmbeddedResource Include="src\Frame\ConfigFrame.resx">
       <DependentUpon>ConfigFrame.cs</DependentUpon>
     </EmbeddedResource>

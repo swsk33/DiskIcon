@@ -1,4 +1,5 @@
-﻿using Swsk33.ReadAndWriteSharp;
+﻿using DiskIcon.Util;
+using Swsk33.ReadAndWriteSharp;
 using System;
 using System.Windows.Forms;
 
@@ -20,6 +21,16 @@ namespace DiskIcon
 		/// 鼠标是否在窗口上是按下状态
 		/// </summary>
 		private bool isMouseDown = false;
+
+		/// <summary>
+		/// 右键菜单-设置图标的显示名
+		/// </summary>
+		private static readonly string SET_ICON_MENU_NAME = "将该图片设为储存器图标";
+
+		/// <summary>
+		/// 右键菜单-裁剪图片的显示名
+		/// </summary>
+		private static readonly string CROP_IMAGE_MENU_NAME = "将该图片转为ico/裁剪图标/制作头像";
 
 		public ConfigFrame()
 		{
@@ -117,6 +128,34 @@ namespace DiskIcon
 			{
 				customValue.Enabled = false;
 				IconSizeValue.Enabled = true;
+			}
+		}
+
+		private void addRight_Click(object sender, EventArgs e)
+		{
+			bool addIconOption = RegUtils.OperateFileOrDirRightMenu(SET_ICON_MENU_NAME, Program.SELF_PATH, ProgramUtils.SurroundByQuote(Program.SELF_PATH) + " i " + ProgramUtils.SurroundByQuote("%l"), true);
+			bool addCropOption = RegUtils.OperateFileOrDirRightMenu(CROP_IMAGE_MENU_NAME, Program.SELF_PATH, ProgramUtils.SurroundByQuote(Program.SELF_PATH) + " c " + ProgramUtils.SurroundByQuote("%l"), true);
+			if (addIconOption && addCropOption)
+			{
+				MessageBox.Show("已成功添加右键快捷操作菜单！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			else
+			{
+				MessageBox.Show("添加失败！请检查是否有管理员权限！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void rmRight_Click(object sender, EventArgs e)
+		{
+			bool rmIconOption = RegUtils.OperateFileOrDirRightMenu(SET_ICON_MENU_NAME, "", false);
+			bool rmCropOption = RegUtils.OperateFileOrDirRightMenu(CROP_IMAGE_MENU_NAME, "", false);
+			if (rmIconOption && rmCropOption)
+			{
+				MessageBox.Show("已成功移除右键快捷操作菜单！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			else
+			{
+				MessageBox.Show("移除失败！请检查是否有管理员权限！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 	}

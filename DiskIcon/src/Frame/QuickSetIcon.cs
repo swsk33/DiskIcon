@@ -29,7 +29,7 @@ namespace DiskIcon
 
 		private void close_Click(object sender, EventArgs e)
 		{
-			Close();
+			Application.Exit();
 		}
 
 		private void mouseDownEvent(object sender, MouseEventArgs e)

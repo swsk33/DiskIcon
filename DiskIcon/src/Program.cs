@@ -27,9 +27,9 @@ namespace DiskIcon
 		public static readonly string CFG_FILE_PATH = CFG_DIR_PATH + "diskIcon.cfg";
 
 		/// <summary>
-		/// 临时文件目录
+		/// 支持的图片格式
 		/// </summary>
-		public static readonly string TMP_PATH = CFG_DIR_PATH + "tmp\\";
+		public static readonly string[] SUPPORT_IMAGE_FORMAT = { "jpg", "jpeg", "png", "bmp" };
 
 		/// <summary>
 		/// 全局配置信息
@@ -89,6 +89,18 @@ namespace DiskIcon
 				if (args.Length < 2)
 				{
 					MessageBox.Show("缺少参数！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+				string imagePath = args[1];
+				if (Array.IndexOf(SUPPORT_IMAGE_FORMAT, imagePath.Substring(imagePath.LastIndexOf(".") + 1)) == -1)
+				{
+					string support = "";
+					foreach (string f in SUPPORT_IMAGE_FORMAT)
+					{
+						support = support + f + "、";
+					}
+					support = support.Substring(0, support.Length - 1);
+					MessageBox.Show("图片格式不支持！目前支持的格式：" + support, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
 				}
 				if (args[0].Equals("i"))

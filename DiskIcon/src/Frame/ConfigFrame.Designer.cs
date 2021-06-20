@@ -100,6 +100,7 @@ namespace DiskIcon
 			this.addRight.TabIndex = 6;
 			this.addRight.Text = "添加/修复右键菜单";
 			this.addRight.UseVisualStyleBackColor = false;
+			this.addRight.Click += new System.EventHandler(this.addRight_Click);
 			// 
 			// rmRight
 			// 
@@ -117,6 +118,7 @@ namespace DiskIcon
 			this.rmRight.TabIndex = 6;
 			this.rmRight.Text = "移除右键菜单";
 			this.rmRight.UseVisualStyleBackColor = false;
+			this.rmRight.Click += new System.EventHandler(this.rmRight_Click);
 			// 
 			// save
 			// 
