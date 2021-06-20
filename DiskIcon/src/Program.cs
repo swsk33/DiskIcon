@@ -19,7 +19,7 @@ namespace DiskIcon
 		/// <summary>
 		/// 程序配置主目录
 		/// </summary>
-		public static readonly string CFG_DIR_PATH = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.config\\diskIcon\\" ;
+		public static readonly string CFG_DIR_PATH = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.config\\diskIcon\\";
 
 		/// <summary>
 		/// 程序配置文件路径
@@ -86,11 +86,29 @@ namespace DiskIcon
 			}
 			else
 			{
+				if (args.Length < 2)
+				{
+					MessageBox.Show("缺少参数！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
 				if (args[0].Equals("i"))
 				{
+					GlobalAppMode = AppMode.QUICK_ICO_MODE;
 					QuickModeImage = args[1];
 					new QuickSetIcon().Show();
 					Application.Run();
+				}
+				else if (args[0].Equals("c"))
+				{
+					GlobalAppMode = AppMode.IMAGE_CROP_MODE;
+					QuickModeImage = args[1];
+					Image image = Image.FromFile(QuickModeImage);
+					new ImageEditFrame().initEditFrame(image);
+					image.Dispose();
+				}
+				else
+				{
+					MessageBox.Show("参数错误！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 		}

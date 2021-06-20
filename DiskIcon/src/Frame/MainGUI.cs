@@ -57,7 +57,7 @@ namespace DiskIcon
 
 		private void setup_Click(object sender, EventArgs e)
 		{
-			new ConfigFrame().Show();
+			new ConfigFrame().ShowDialog();
 		}
 
 		private void selectPic_Click(object sender, EventArgs e)

@@ -255,6 +255,7 @@ namespace DiskIcon
 			// setup
 			// 
 			this.setup.BackColor = System.Drawing.Color.Transparent;
+			this.setup.BackgroundImage = global::DiskIcon.IconImage.setup;
 			this.setup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.setup.FlatAppearance.BorderColor = System.Drawing.Color.White;
 			this.setup.FlatAppearance.BorderSize = 0;

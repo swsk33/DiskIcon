@@ -63,7 +63,7 @@ namespace DiskIcon
 		}
 
 		/// <summary>
-		/// 以一个图像初始化一个裁剪窗口
+		/// 以一个图像初始化一个裁剪窗口（模态框）
 		/// </summary>
 		/// <param name="image">原图像</param>
 		public void initEditFrame(Image image)
@@ -73,7 +73,7 @@ namespace DiskIcon
 		}
 
 		/// <summary>
-		/// 以一个图像初始化一个裁剪窗口并指定待设定图标的储存器
+		/// 以一个图像初始化一个裁剪窗口并指定待设定图标的储存器（模态框）
 		/// </summary>
 		/// <param name="image">原图像</param>
 		/// <param name="diskPath">储存器</param>
@@ -185,13 +185,13 @@ namespace DiskIcon
 
 		private void close_Click(object sender, System.EventArgs e)
 		{
-			if (Program.GlobalAppMode == AppMode.MAIN_GUI)
+			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
 			{
-				Dispose();
+				Application.Exit();
 			}
 			else
 			{
-				Application.Exit();
+				Dispose();
 			}
 		}
 

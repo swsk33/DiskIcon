@@ -11,8 +11,6 @@ namespace DiskIcon.Model
 
 		private int iconSize;
 
-		private bool checkUpdate;
-
 		/// <summary>
 		/// 无参构造器
 		/// </summary>
@@ -29,7 +27,6 @@ namespace DiskIcon.Model
 		public Config(int iconSize, bool checkUpdate)
 		{
 			this.iconSize = iconSize;
-			this.checkUpdate = checkUpdate;
 		}
 
 		/// <summary>
@@ -45,22 +42,6 @@ namespace DiskIcon.Model
 			set
 			{
 				iconSize = value;
-			}
-		}
-
-		/// <summary>
-		/// 是否检测更新
-		/// </summary>
-		public bool CheckUpdate
-		{
-			get
-			{
-				return checkUpdate;
-			}
-
-			set
-			{
-				checkUpdate = value;
 			}
 		}
 	}

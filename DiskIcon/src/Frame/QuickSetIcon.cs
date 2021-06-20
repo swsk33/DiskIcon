@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace DiskIcon
@@ -67,7 +68,15 @@ namespace DiskIcon
 
 		private void ok_Click(object sender, EventArgs e)
 		{
-			//new ImageEditFrame().initEditFrame(); 
+			if (DiskValue.Text.Equals(""))
+			{
+				MessageBox.Show("请指定要修改图标的磁盘！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			string diskPath = DiskValue.Text;
+			Image image = Image.FromFile(Program.QuickModeImage);
+			new ImageEditFrame().initEditFrame(image, diskPath);
+			image.Dispose();
 		}
 	}
 }
