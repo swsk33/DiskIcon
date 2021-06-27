@@ -222,19 +222,19 @@
             命令是否执行完成
             </summary>
         </member>
-        <member name="T:Swsk33.ReadAndWriteSharp.NetworkUtil">
+        <member name="T:Swsk33.ReadAndWriteSharp.NetworkUtils">
             <summary>
             网络实用类
             </summary>
         </member>
-        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendGetRequest(System.String)">
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtils.SendGetRequest(System.String)">
             <summary>
             发送GET请求
             </summary>
             <param name="url">请求地址</param>
             <returns>响应内容</returns>
         </member>
-        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendGetRequest(System.String,System.String)">
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtils.SendGetRequest(System.String,System.String)">
             <summary>
             以一个特定的User-Agent发送GET请求
             </summary>
@@ -242,7 +242,7 @@
             <param name="userAgent">User-Agent，可以使用Swsk33.ReadAndWriteSharp.Param下的UserAgentValue中的常量值也可以自定义</param>
             <returns>响应内容</returns>
         </member>
-        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendGetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtils.SendGetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             发送自定义请求头的GET请求
             </summary>
@@ -250,7 +250,7 @@
             <param name="headers">存放自定义的请求头的键值对，其中可以设定Content-Type、User-Agent值等等</param>
             <returns>响应内容</returns>
         </member>
-        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendPostRequest(System.String,System.String,System.String)">
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtils.SendPostRequest(System.String,System.String,System.String)">
             <summary>
             发送POST请求
             </summary>
@@ -259,7 +259,7 @@
             <param name="requestBody">请求体，注意的是不同的内容类型有不同的请求体格式，例如application/x-www-form-urlencoded中请求体通常是：键1=值1&amp;键2=值2&amp;...</param>
             <returns>响应内容</returns>
         </member>
-        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendPostRequest(System.String,System.String,System.String,System.String)">
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtils.SendPostRequest(System.String,System.String,System.String,System.String)">
             <summary>
             以一个特定的User-Agent发送POST请求
             </summary>
@@ -269,7 +269,7 @@
             <param name="requestBody">请求体，注意的是不同的内容类型有不同的请求体格式，例如application/x-www-form-urlencoded中请求体通常是：键1=值1&amp;键2=值2&amp;...</param>
             <returns>响应内容</returns>
         </member>
-        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.SendPostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtils.SendPostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
             <summary>
             发送自定义请求头的POST请求
             </summary>
@@ -278,7 +278,7 @@
             <param name="requestBody">请求体，注意的是不同的内容类型有不同的请求体格式，例如application/x-www-form-urlencoded中请求体通常是：键1=值1&amp;键2=值2&amp;...</param>
             <returns>响应内容</returns>
         </member>
-        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.DownloadFile(System.String,System.String)">
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtils.DownloadFile(System.String,System.String)">
             <summary>
             下载文件
             </summary>
@@ -286,7 +286,7 @@
             <param name="filePath">文件保存位置，已存在将覆盖</param>
             <returns>是否下载成功</returns>
         </member>
-        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.DownloadFile(System.String,System.String,System.String)">
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtils.DownloadFile(System.String,System.String,System.String)">
             <summary>
             以一个特定的User-Agent下载文件
             </summary>
@@ -295,7 +295,7 @@
             <param name="filePath">文件保存位置，已存在将覆盖</param>
             <returns>是否下载成功</returns>
         </member>
-        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtil.DownloadFile(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+        <member name="M:Swsk33.ReadAndWriteSharp.NetworkUtils.DownloadFile(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
             <summary>
             以一个特定的请求头下载文件
             </summary>
@@ -464,12 +464,28 @@
             <param name="args">参数</param>
             <returns>命令输出结果，为string数组，数组的第一个为标准输出流，第二个为标准错误流</returns>
         </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TerminalUtils.RunCommand(System.String,System.String[])">
+            <summary>
+            调用命令行并获取执行结果，该方法为同步方法，会堵塞线程
+            </summary>
+            <param name="command">命令</param>
+            <param name="args">参数数组。例如命令为7z a -t7z -mx9 a.7z dir，那么args的值应当是：{ "a", "-t7z", "-mx9", "a.7z", "dir" }</param>
+            <returns>命令输出结果，为string数组，数组的第一个为标准输出流，第二个为标准错误流</returns>
+        </member>
         <member name="M:Swsk33.ReadAndWriteSharp.TerminalUtils.RunCommandAsynchronously(System.String,System.String,Swsk33.ReadAndWriteSharp.Model.TerminalResult)">
             <summary>
             异步执行命令行并将输出结果实时储存在一个TerminalResult类型的实例中
             </summary>
             <param name="command">调用命令</param>
             <param name="args">命令参数</param>
+            <param name="result">TerminalResult类型的实例，位于Swsk33.ReadAndWriteSharp.Model下，用于实时存放命令行的输出结果，先实例化一个TerminalResult对象并传入，然后可以在主线程实时获取结果</param>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TerminalUtils.RunCommandAsynchronously(System.String,System.String[],Swsk33.ReadAndWriteSharp.Model.TerminalResult)">
+            <summary>
+            异步执行命令行并将输出结果实时储存在一个TerminalResult类型的实例中
+            </summary>
+            <param name="command">调用命令</param>
+            <param name="args">参数数组。例如命令为7z a -t7z -mx9 a.7z dir，那么args的值应当是：{ "a", "-t7z", "-mx9", "a.7z", "dir" }</param>
             <param name="result">TerminalResult类型的实例，位于Swsk33.ReadAndWriteSharp.Model下，用于实时存放命令行的输出结果，先实例化一个TerminalResult对象并传入，然后可以在主线程实时获取结果</param>
         </member>
         <member name="T:Swsk33.ReadAndWriteSharp.TextFileReader">
@@ -594,6 +610,32 @@
             </summary>
             <param name="filePath">待清空的文件</param>
             <returns>是否清空成功</returns>
+        </member>
+        <member name="T:Swsk33.ReadAndWriteSharp.TextUtils">
+            <summary>
+            文本处理实用类
+            </summary>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextUtils.SurroundBySingleQuotes(System.String)">
+            <summary>
+            使用单引号包围字符串
+            </summary>
+            <param name="origin">原字符串</param>
+            <returns>被单引号包围的字符串</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextUtils.SurroundByDoubleQuotes(System.String)">
+            <summary>
+            使用双引号包围字符串
+            </summary>
+            <param name="origin">原字符串</param>
+            <returns>被双引号包围的字符串</returns>
+        </member>
+        <member name="M:Swsk33.ReadAndWriteSharp.TextUtils.EscapeCharacterInString(System.String)">
+            <summary>
+            将原字符串中特殊字符转义存储（暂不支持Unicode）
+            </summary>
+            <param name="origin">原字符串</param>
+            <returns>转义存储后字符串</returns>
         </member>
     </members>
 </doc>

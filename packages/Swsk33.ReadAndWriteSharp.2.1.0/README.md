@@ -16,6 +16,10 @@ using Swsk33.ReadAndWriteSharp;
 
 ### 公用类及其方法
 位于命名空间*Swsk33.ReadAndWriteSharp*下：<br>
+#### TextUtils：文本处理实用类
+- static string SurroundBySingleQuotes(string origin)：使用单引号包围字符串
+- static string SurroundByDoubleQuotes(string origin)：使用双引号包围字符串
+- static string EscapeCharacterInString(string origin)：将原字符串中特殊字符转义存储（暂不支持Unicode）
 #### TextFileReader: 文本文件读取器
 - static int GetFileLine(string filePath)：读取文本文件的行数
 - static string ReadSpecificLine(string filePath, int line)：读取文本文件指定行
@@ -47,8 +51,10 @@ using Swsk33.ReadAndWriteSharp;
 - static string GetFileSHA1(string filePath)：获取文件SHA1值
 #### TerminalUtils:终端实用类
 - static string[] RunCommand(string command, string args)：调用命令行并获取执行结果，该方法为同步方法，会堵塞线程
+- static string[] RunCommand(string command, string[] args)：调用命令行并获取执行结果，该方法为同步方法，会堵塞线程
 - static void RunCommandAsynchronously(string command, string args, TerminalResult result)：异步执行命令行并将输出结果实时储存在一个TerminalResult类型的实例中
-#### NetworkUtil：网络实用类
+- static void RunCommandAsynchronously(string command, string[] args, TerminalResult result)：异步执行命令行并将输出结果实时储存在一个TerminalResult类型的实例中
+#### NetworkUtils：网络实用类
 - static string SendGetRequest(string url)：发送GET请求
 - static string SendGetRequest(string url, string userAgent)：发送自定义UserAgent的GET请求
 - static string SendGetRequest(string url, Dictionary<string, string> headers)：发送自定义请求头的GET请求
@@ -70,4 +76,4 @@ using Swsk33.ReadAndWriteSharp;
 
 **在vs中使用这些类即可显示其中详细的的方法与说明，前提是引用类库时必须将下载的dll和xml文件放一起，或者直接使用nuget包**<br>
 
->最后更新：21.5.31
+>最后更新：2021.6.21

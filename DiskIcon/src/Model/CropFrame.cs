@@ -11,22 +11,51 @@ namespace DiskIcon.Model
 	public class CropFrame
 	{
 
+		/// <summary>
+		/// 指定绘制裁剪框的组件
+		/// </summary>
 		private Control drawComponent;
 
+		/// <summary>
+		/// 裁剪框绘制器
+		/// </summary>
 		private Graphics cropFrameBody;
 
+		/// <summary>
+		/// 裁剪框轮廓画笔
+		/// </summary>
 		private Pen cropFrameOutlinePen;
 
+		/// <summary>
+		/// 裁剪框内部圆轮廓画笔
+		/// </summary>
 		private Pen cropFrameInnerPen;
 
+		/// <summary>
+		/// 裁剪框内部参考格网画笔
+		/// </summary>
 		private Pen cropFrameReferPen;
 
+		/// <summary>
+		/// 裁剪框拖动点绘制笔刷
+		/// </summary>
 		private Brush cropFrameDraftBrush;
+
+		/// <summary>
+		/// 裁剪时内部圆和外部边框之间的蒙层
+		/// </summary>
+		private Brush cropFrameMaskBrush;
 
 		private Rectangle cropFrameOutlineRectangle;
 
+		/// <summary>
+		/// 裁剪框拖动点
+		/// </summary>
 		private Rectangle cropFrameDraftPoint;
 
+		/// <summary>
+		/// 若划定限定区，则指定限定区域的具体矩形区域
+		/// </summary>
 		private Rectangle restrictedArea;
 
 		/// <summary>
@@ -69,45 +98,12 @@ namespace DiskIcon.Model
 		/// </summary>
 		private bool showRefer;
 
-		/// <summary>
-		/// 裁剪框绘制器
-		/// </summary>
-		public Graphics CropFrameBody { get => cropFrameBody; set => cropFrameBody = value; }
-
-		/// <summary>
-		/// 裁剪框轮廓画笔
-		/// </summary>
-		public Pen CropFrameOutlinePen { get => cropFrameOutlinePen; set => cropFrameOutlinePen = value; }
-
-		/// <summary>
-		/// 裁剪框内部圆轮廓画笔
-		/// </summary>
-		public Pen CropFrameInnerPen { get => cropFrameInnerPen; set => cropFrameInnerPen = value; }
-
-		/// <summary>
-		/// 裁剪框内部参考格网画笔
-		/// </summary>
-		public Pen CropFrameReferPen { get => cropFrameReferPen; set => cropFrameReferPen = value; }
-
-		/// <summary>
-		/// 裁剪框拖动点绘制笔刷
-		/// </summary>
-		public Brush CropFrameDraftBrush { get => cropFrameDraftBrush; set => cropFrameDraftBrush = value; }
+		public Brush CropFrameMaskBrush { get => cropFrameMaskBrush; set => cropFrameMaskBrush = value; }
 
 		/// <summary>0
 		/// 裁剪框外轮廓
 		/// </summary>
 		public Rectangle CropFrameOutlineRectangle { get => cropFrameOutlineRectangle; set => cropFrameOutlineRectangle = value; }
-
-		/// <summary>
-		/// 裁剪框拖动点
-		/// </summary>
-		public Rectangle CropFrameDraftPoint { get => cropFrameDraftPoint; set => cropFrameDraftPoint = value; }
-
-		/// <summary>
-		/// 若划定限定区，则指定限定区域的具体矩形区域
-		/// </summary>
-		public Rectangle RestrictedArea { get => restrictedArea; set => restrictedArea = value; }
 
 		/// <summary>
 		/// 构建没有限制区的裁剪框
@@ -256,6 +252,11 @@ namespace DiskIcon.Model
 			cropFrameOutlineRectangle = new Rectangle(x, y, sideLength, sideLength);
 			if (showInnerCircle)
 			{
+				cropFrameMaskBrush = new SolidBrush(Color.FromArgb(185, 63, 63, 70));
+				GraphicsPath graphicsPath = new GraphicsPath();
+				graphicsPath.AddRectangle(cropFrameOutlineRectangle);
+				graphicsPath.AddEllipse(cropFrameOutlineRectangle);
+				cropFrameBody.FillRegion(cropFrameMaskBrush, new Region(graphicsPath));
 				cropFrameInnerPen = new Pen(Color.Blue, 1);
 				cropFrameBody.DrawEllipse(cropFrameInnerPen, cropFrameOutlineRectangle);
 			}
