@@ -37,10 +37,11 @@ namespace DiskIcon
 			this.applyOrDirectSaveIco = new System.Windows.Forms.Button();
 			this.saveIcon = new System.Windows.Forms.Button();
 			this.savePng = new System.Windows.Forms.Button();
-			this.circleMode = new System.Windows.Forms.CheckBox();
+			this.showInnerCircle = new System.Windows.Forms.CheckBox();
 			this.close = new System.Windows.Forms.Button();
 			this.cropTip = new System.Windows.Forms.Label();
 			this.loading = new System.Windows.Forms.PictureBox();
+			this.showReferLine = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.inputImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
 			this.SuspendLayout();
@@ -162,19 +163,19 @@ namespace DiskIcon
 			this.savePng.UseVisualStyleBackColor = false;
 			this.savePng.Click += new System.EventHandler(this.savePng_Click);
 			// 
-			// circleMode
+			// showInnerCircle
 			// 
-			this.circleMode.AutoSize = true;
-			this.circleMode.BackColor = System.Drawing.Color.Transparent;
-			this.circleMode.Enabled = false;
-			this.circleMode.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.circleMode.Location = new System.Drawing.Point(12, 396);
-			this.circleMode.Name = "circleMode";
-			this.circleMode.Size = new System.Drawing.Size(110, 18);
-			this.circleMode.TabIndex = 7;
-			this.circleMode.Text = "显示圆形参照";
-			this.circleMode.UseVisualStyleBackColor = false;
-			this.circleMode.CheckedChanged += new System.EventHandler(this.circleMode_CheckedChanged);
+			this.showInnerCircle.AutoSize = true;
+			this.showInnerCircle.BackColor = System.Drawing.Color.Transparent;
+			this.showInnerCircle.Enabled = false;
+			this.showInnerCircle.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.showInnerCircle.Location = new System.Drawing.Point(11, 396);
+			this.showInnerCircle.Name = "showInnerCircle";
+			this.showInnerCircle.Size = new System.Drawing.Size(96, 16);
+			this.showInnerCircle.TabIndex = 7;
+			this.showInnerCircle.Text = "显示圆形参照";
+			this.showInnerCircle.UseVisualStyleBackColor = false;
+			this.showInnerCircle.CheckedChanged += new System.EventHandler(this.cropFrameReferSign);
 			// 
 			// close
 			// 
@@ -200,7 +201,7 @@ namespace DiskIcon
 			this.cropTip.BackColor = System.Drawing.Color.Transparent;
 			this.cropTip.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.cropTip.ForeColor = System.Drawing.Color.Red;
-			this.cropTip.Location = new System.Drawing.Point(258, 392);
+			this.cropTip.Location = new System.Drawing.Point(260, 392);
 			this.cropTip.Name = "cropTip";
 			this.cropTip.Size = new System.Drawing.Size(113, 24);
 			this.cropTip.TabIndex = 9;
@@ -211,13 +212,27 @@ namespace DiskIcon
 			// 
 			this.loading.BackColor = System.Drawing.Color.Transparent;
 			this.loading.Image = global::DiskIcon.IconImage.loading;
-			this.loading.Location = new System.Drawing.Point(176, 392);
+			this.loading.Location = new System.Drawing.Point(221, 391);
 			this.loading.Name = "loading";
 			this.loading.Size = new System.Drawing.Size(24, 24);
 			this.loading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.loading.TabIndex = 10;
 			this.loading.TabStop = false;
 			this.loading.Visible = false;
+			// 
+			// showReferLine
+			// 
+			this.showReferLine.AutoSize = true;
+			this.showReferLine.BackColor = System.Drawing.Color.Transparent;
+			this.showReferLine.Enabled = false;
+			this.showReferLine.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.showReferLine.Location = new System.Drawing.Point(117, 396);
+			this.showReferLine.Name = "showReferLine";
+			this.showReferLine.Size = new System.Drawing.Size(96, 16);
+			this.showReferLine.TabIndex = 7;
+			this.showReferLine.Text = "显示格网参照";
+			this.showReferLine.UseVisualStyleBackColor = false;
+			this.showReferLine.CheckedChanged += new System.EventHandler(this.cropFrameReferSign);
 			// 
 			// ImageEditFrame
 			// 
@@ -228,7 +243,8 @@ namespace DiskIcon
 			this.Controls.Add(this.loading);
 			this.Controls.Add(this.cropTip);
 			this.Controls.Add(this.close);
-			this.Controls.Add(this.circleMode);
+			this.Controls.Add(this.showReferLine);
+			this.Controls.Add(this.showInnerCircle);
 			this.Controls.Add(this.applyOrDirectSaveIco);
 			this.Controls.Add(this.doNotCropOrDirectSavePng);
 			this.Controls.Add(this.savePng);
@@ -263,9 +279,10 @@ namespace DiskIcon
 		private System.Windows.Forms.Button applyOrDirectSaveIco;
 		private System.Windows.Forms.Button saveIcon;
 		private System.Windows.Forms.Button savePng;
-		private System.Windows.Forms.CheckBox circleMode;
+		private System.Windows.Forms.CheckBox showInnerCircle;
 		private System.Windows.Forms.Button close;
 		private System.Windows.Forms.Label cropTip;
 		private System.Windows.Forms.PictureBox loading;
+		private System.Windows.Forms.CheckBox showReferLine;
 	}
 }

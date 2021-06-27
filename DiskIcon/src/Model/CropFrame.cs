@@ -19,6 +19,8 @@ namespace DiskIcon.Model
 
 		private Pen cropFrameInnerPen;
 
+		private Pen cropFrameReferPen;
+
 		private Brush cropFrameDraftBrush;
 
 		private Rectangle cropFrameOutlineRectangle;
@@ -63,6 +65,11 @@ namespace DiskIcon.Model
 		private bool showInner;
 
 		/// <summary>
+		/// 是否显示参考线
+		/// </summary>
+		private bool showRefer;
+
+		/// <summary>
 		/// 裁剪框绘制器
 		/// </summary>
 		public Graphics CropFrameBody { get => cropFrameBody; set => cropFrameBody = value; }
@@ -78,11 +85,16 @@ namespace DiskIcon.Model
 		public Pen CropFrameInnerPen { get => cropFrameInnerPen; set => cropFrameInnerPen = value; }
 
 		/// <summary>
+		/// 裁剪框内部参考格网画笔
+		/// </summary>
+		public Pen CropFrameReferPen { get => cropFrameReferPen; set => cropFrameReferPen = value; }
+
+		/// <summary>
 		/// 裁剪框拖动点绘制笔刷
 		/// </summary>
 		public Brush CropFrameDraftBrush { get => cropFrameDraftBrush; set => cropFrameDraftBrush = value; }
 
-		/// <summary>
+		/// <summary>0
 		/// 裁剪框外轮廓
 		/// </summary>
 		public Rectangle CropFrameOutlineRectangle { get => cropFrameOutlineRectangle; set => cropFrameOutlineRectangle = value; }
@@ -165,11 +177,11 @@ namespace DiskIcon.Model
 							{
 								sideLength = restrictedArea.Bottom - y - (int)cropFrameOutlinePen.Width;
 							}
-							ProceedCutBox(x, y, sideLength, showInner);
+							ProceedCutBox(x, y, sideLength, showInner, showRefer);
 						}
 						else
 						{
-							ProceedCutBox(x, y, sideLength, showInner);
+							ProceedCutBox(x, y, sideLength, showInner, showRefer);
 						}
 					}
 				}
@@ -199,11 +211,11 @@ namespace DiskIcon.Model
 							{
 								y = restrictedArea.Bottom - sideLength - (int)cropFrameOutlinePen.Width;
 							}
-							ProceedCutBox(x, y, sideLength, showInner);
+							ProceedCutBox(x, y, sideLength, showInner, showRefer);
 						}
 						else
 						{
-							ProceedCutBox(x, y, sideLength, showInner);
+							ProceedCutBox(x, y, sideLength, showInner, showRefer);
 						}
 					}
 				}
@@ -230,10 +242,12 @@ namespace DiskIcon.Model
 		/// <param name="y">裁剪框y坐标</param>
 		/// <param name="sideLength">裁剪框边长</param>
 		/// <param name="showInnerCircle">是否显示内部圆</param>
-		public void ProceedCutBox(int x, int y, int sideLength, bool showInnerCircle)
+		/// <param name="showReferLine">是否显示参考格网</param>
+		public void ProceedCutBox(int x, int y, int sideLength, bool showInnerCircle, bool showReferLine)
 		{
 			isCropping = true;
 			showInner = showInnerCircle;
+			showRefer = showReferLine;
 			drawComponent.Refresh();
 			cropFrameBody = drawComponent.CreateGraphics();
 			cropFrameBody.SmoothingMode = SmoothingMode.AntiAlias;
@@ -244,6 +258,16 @@ namespace DiskIcon.Model
 			{
 				cropFrameInnerPen = new Pen(Color.Blue, 1);
 				cropFrameBody.DrawEllipse(cropFrameInnerPen, cropFrameOutlineRectangle);
+			}
+			if (showReferLine)
+			{
+				cropFrameReferPen = new Pen(Color.DarkGreen, 1.5f);
+				double rate1 = 1.0 / 3.0;
+				double rate2 = 2.0 / 3.0;
+				cropFrameBody.DrawLine(cropFrameReferPen, (float)(x + rate1 * sideLength), y, (float)(x + rate1 * sideLength), y + sideLength);
+				cropFrameBody.DrawLine(cropFrameReferPen, (float)(x + rate2 * sideLength), y, (float)(x + rate2 * sideLength), y + sideLength);
+				cropFrameBody.DrawLine(cropFrameReferPen, x, (float)(y + rate1 * sideLength), x + sideLength, (float)(y + rate1 * sideLength));
+				cropFrameBody.DrawLine(cropFrameReferPen, x, (float)(y + rate2 * sideLength), x + sideLength, (float)(y + rate2 * sideLength));
 			}
 			cropFrameDraftBrush = new SolidBrush(Color.Purple);
 			cropFrameDraftPoint = new Rectangle(x + cropFrameOutlineRectangle.Width - 3, y + cropFrameOutlineRectangle.Height - 3, 6, 6);

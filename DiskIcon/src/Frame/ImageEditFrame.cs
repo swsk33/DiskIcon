@@ -162,7 +162,8 @@ namespace DiskIcon
 		{
 			cropTip.Visible = true;
 			start.Enabled = false;
-			circleMode.Enabled = true;
+			showInnerCircle.Enabled = true;
+			showReferLine.Enabled = true;
 			saveIcon.Enabled = true;
 			savePng.Enabled = true;
 			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
@@ -180,15 +181,18 @@ namespace DiskIcon
 			{
 				sideLength = imageInBoxWidth;
 			}
-			cropFrame.ProceedCutBox(imageInBoxX, imageInBoxY, (int)(sideLength * 0.9), false);
+			cropFrame.ProceedCutBox(imageInBoxX, imageInBoxY, (int)(sideLength * 0.9), false, false);
 		}
 
-		private void circleMode_CheckedChanged(object sender, System.EventArgs e)
+		/// <summary>
+		/// 裁剪框的裁剪参照标志开关检测
+		/// </summary>
+		private void cropFrameReferSign(object sender, System.EventArgs e)
 		{
 			int x = cropFrame.CropFrameOutlineRectangle.X;
 			int y = cropFrame.CropFrameOutlineRectangle.Y;
 			int sideLength = cropFrame.CropFrameOutlineRectangle.Width;
-			cropFrame.ProceedCutBox(x, y, sideLength, circleMode.Checked);
+			cropFrame.ProceedCutBox(x, y, sideLength, showInnerCircle.Checked, showReferLine.Checked);
 		}
 
 		private void close_Click(object sender, System.EventArgs e)
