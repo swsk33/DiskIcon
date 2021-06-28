@@ -117,6 +117,7 @@ namespace DiskIcon
 					Image image = Image.FromFile(QuickModeImage);
 					new ImageEditFrame().initEditFrame(image);
 					image.Dispose();
+
 				}
 				else
 				{
