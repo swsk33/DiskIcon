@@ -29,7 +29,7 @@ namespace DiskIcon
 		/// <summary>
 		/// 支持的图片格式
 		/// </summary>
-		public static readonly string[] SUPPORT_IMAGE_FORMAT = { "jpg", "jpeg", "png", "bmp" };
+		public static readonly string[] SUPPORT_IMAGE_FORMAT = { "jpg", "jpeg", "png", "bmp", "tif", "tiff" };
 
 		/// <summary>
 		/// 全局配置信息

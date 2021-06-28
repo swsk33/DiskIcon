@@ -33,10 +33,10 @@ namespace DiskIcon
 			this.title = new System.Windows.Forms.Label();
 			this.inputImage = new System.Windows.Forms.PictureBox();
 			this.start = new System.Windows.Forms.Button();
-			this.doNotCropOrDirectSavePng = new System.Windows.Forms.Button();
+			this.doNotCropOrDirectSaveImage = new System.Windows.Forms.Button();
 			this.applyOrDirectSaveIco = new System.Windows.Forms.Button();
 			this.saveIcon = new System.Windows.Forms.Button();
-			this.savePng = new System.Windows.Forms.Button();
+			this.saveImageFile = new System.Windows.Forms.Button();
 			this.showInnerCircle = new System.Windows.Forms.CheckBox();
 			this.close = new System.Windows.Forms.Button();
 			this.cropTip = new System.Windows.Forms.Label();
@@ -88,23 +88,23 @@ namespace DiskIcon
 			this.start.UseVisualStyleBackColor = false;
 			this.start.Click += new System.EventHandler(this.start_Click);
 			// 
-			// doNotCropOrDirectSavePng
+			// doNotCropOrDirectSaveImage
 			// 
-			this.doNotCropOrDirectSavePng.BackColor = System.Drawing.Color.Transparent;
-			this.doNotCropOrDirectSavePng.Cursor = System.Windows.Forms.Cursors.Default;
-			this.doNotCropOrDirectSavePng.FlatAppearance.BorderSize = 0;
-			this.doNotCropOrDirectSavePng.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-			this.doNotCropOrDirectSavePng.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-			this.doNotCropOrDirectSavePng.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.doNotCropOrDirectSavePng.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.doNotCropOrDirectSavePng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.doNotCropOrDirectSavePng.Location = new System.Drawing.Point(260, 454);
-			this.doNotCropOrDirectSavePng.Name = "doNotCropOrDirectSavePng";
-			this.doNotCropOrDirectSavePng.Size = new System.Drawing.Size(113, 24);
-			this.doNotCropOrDirectSavePng.TabIndex = 6;
-			this.doNotCropOrDirectSavePng.Text = "不裁剪直接应用";
-			this.doNotCropOrDirectSavePng.UseVisualStyleBackColor = false;
-			this.doNotCropOrDirectSavePng.Click += new System.EventHandler(this.doNotCropOrDirectSavePng_Click);
+			this.doNotCropOrDirectSaveImage.BackColor = System.Drawing.Color.Transparent;
+			this.doNotCropOrDirectSaveImage.Cursor = System.Windows.Forms.Cursors.Default;
+			this.doNotCropOrDirectSaveImage.FlatAppearance.BorderSize = 0;
+			this.doNotCropOrDirectSaveImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+			this.doNotCropOrDirectSaveImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+			this.doNotCropOrDirectSaveImage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.doNotCropOrDirectSaveImage.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.doNotCropOrDirectSaveImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.doNotCropOrDirectSaveImage.Location = new System.Drawing.Point(260, 454);
+			this.doNotCropOrDirectSaveImage.Name = "doNotCropOrDirectSaveImage";
+			this.doNotCropOrDirectSaveImage.Size = new System.Drawing.Size(113, 24);
+			this.doNotCropOrDirectSaveImage.TabIndex = 6;
+			this.doNotCropOrDirectSaveImage.Text = "不裁剪直接应用";
+			this.doNotCropOrDirectSaveImage.UseVisualStyleBackColor = false;
+			this.doNotCropOrDirectSaveImage.Click += new System.EventHandler(this.doNotCropOrDirectSaveImage_Click);
 			// 
 			// applyOrDirectSaveIco
 			// 
@@ -144,24 +144,24 @@ namespace DiskIcon
 			this.saveIcon.UseVisualStyleBackColor = false;
 			this.saveIcon.Click += new System.EventHandler(this.saveIcon_Click);
 			// 
-			// savePng
+			// saveImageFile
 			// 
-			this.savePng.BackColor = System.Drawing.Color.Transparent;
-			this.savePng.Cursor = System.Windows.Forms.Cursors.Default;
-			this.savePng.Enabled = false;
-			this.savePng.FlatAppearance.BorderSize = 0;
-			this.savePng.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-			this.savePng.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-			this.savePng.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.savePng.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.savePng.ForeColor = System.Drawing.Color.Indigo;
-			this.savePng.Location = new System.Drawing.Point(131, 454);
-			this.savePng.Name = "savePng";
-			this.savePng.Size = new System.Drawing.Size(123, 24);
-			this.savePng.TabIndex = 6;
-			this.savePng.Text = "裁剪并另存为png";
-			this.savePng.UseVisualStyleBackColor = false;
-			this.savePng.Click += new System.EventHandler(this.savePng_Click);
+			this.saveImageFile.BackColor = System.Drawing.Color.Transparent;
+			this.saveImageFile.Cursor = System.Windows.Forms.Cursors.Default;
+			this.saveImageFile.Enabled = false;
+			this.saveImageFile.FlatAppearance.BorderSize = 0;
+			this.saveImageFile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+			this.saveImageFile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+			this.saveImageFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.saveImageFile.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.saveImageFile.ForeColor = System.Drawing.Color.Indigo;
+			this.saveImageFile.Location = new System.Drawing.Point(131, 454);
+			this.saveImageFile.Name = "saveImageFile";
+			this.saveImageFile.Size = new System.Drawing.Size(123, 24);
+			this.saveImageFile.TabIndex = 6;
+			this.saveImageFile.Text = "裁剪并另存为图片";
+			this.saveImageFile.UseVisualStyleBackColor = false;
+			this.saveImageFile.Click += new System.EventHandler(this.saveImageFile_Click);
 			// 
 			// showInnerCircle
 			// 
@@ -246,8 +246,8 @@ namespace DiskIcon
 			this.Controls.Add(this.showReferLine);
 			this.Controls.Add(this.showInnerCircle);
 			this.Controls.Add(this.applyOrDirectSaveIco);
-			this.Controls.Add(this.doNotCropOrDirectSavePng);
-			this.Controls.Add(this.savePng);
+			this.Controls.Add(this.doNotCropOrDirectSaveImage);
+			this.Controls.Add(this.saveImageFile);
 			this.Controls.Add(this.saveIcon);
 			this.Controls.Add(this.start);
 			this.Controls.Add(this.title);
@@ -275,10 +275,10 @@ namespace DiskIcon
 		private System.Windows.Forms.Label title;
 		private System.Windows.Forms.PictureBox inputImage;
 		private System.Windows.Forms.Button start;
-		private System.Windows.Forms.Button doNotCropOrDirectSavePng;
+		private System.Windows.Forms.Button doNotCropOrDirectSaveImage;
 		private System.Windows.Forms.Button applyOrDirectSaveIco;
 		private System.Windows.Forms.Button saveIcon;
-		private System.Windows.Forms.Button savePng;
+		private System.Windows.Forms.Button saveImageFile;
 		private System.Windows.Forms.CheckBox showInnerCircle;
 		private System.Windows.Forms.Button close;
 		private System.Windows.Forms.Label cropTip;

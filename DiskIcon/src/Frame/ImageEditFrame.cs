@@ -2,8 +2,6 @@
 using DiskIcon.Param;
 using DiskIcon.Util;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -165,16 +163,16 @@ namespace DiskIcon
 			showInnerCircle.Enabled = true;
 			showReferLine.Enabled = true;
 			saveIcon.Enabled = true;
-			savePng.Enabled = true;
+			saveImageFile.Enabled = true;
 			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
 			{
 				applyOrDirectSaveIco.Enabled = false;
-				doNotCropOrDirectSavePng.Enabled = false;
+				doNotCropOrDirectSaveImage.Enabled = false;
 			}
 			else
 			{
 				applyOrDirectSaveIco.Enabled = true;
-				doNotCropOrDirectSavePng.Enabled = false;
+				doNotCropOrDirectSaveImage.Enabled = false;
 			}
 			int sideLength = imageInBoxHeight;
 			if (imageInBoxWidth < imageInBoxHeight)
@@ -228,25 +226,11 @@ namespace DiskIcon
 			}
 		}
 
-		private void savePng_Click(object sender, System.EventArgs e)
+		private void saveImageFile_Click(object sender, System.EventArgs e)
 		{
-			SaveFileDialog dialog = new SaveFileDialog();
-			dialog.Title = "保存png文件至";
-			dialog.Filter = "便携式网络图形(*.png)|*.png";
-			if (dialog.ShowDialog() == DialogResult.OK)
-			{
-				Image image = getCropImage();
-				image.Save(dialog.FileName, ImageFormat.Png);
-				image.Dispose();
-				if (File.Exists(dialog.FileName))
-				{
-					MessageBox.Show("已保存png文件至：" + dialog.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				}
-				else
-				{
-					MessageBox.Show("保存失败！请检查是否有写入权限！", "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
+			Image imageSaved = getCropImage();
+			new SaveImage().initSaveImageDialog(imageSaved);
+			imageSaved.Dispose();
 		}
 
 		private void applyOrDirectSaveIco_Click(object sender, System.EventArgs e)
@@ -284,25 +268,13 @@ namespace DiskIcon
 			}
 		}
 
-		private void doNotCropOrDirectSavePng_Click(object sender, System.EventArgs e)
+		private void doNotCropOrDirectSaveImage_Click(object sender, System.EventArgs e)
 		{
 			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
 			{
-				SaveFileDialog dialog = new SaveFileDialog();
-				dialog.Title = "保存png文件至";
-				dialog.Filter = "便携式网络图形(*.png)|*.png";
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					inputImage.Image.Save(dialog.FileName, ImageFormat.Png);
-					if (File.Exists(dialog.FileName))
-					{
-						MessageBox.Show("已保存png文件至：" + dialog.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					}
-					else
-					{
-						MessageBox.Show("保存失败！请检查是否有写入权限！", "失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-				}
+				Image imageSaved = new Bitmap(inputImage.Image);
+				new SaveImage().initSaveImageDialog(imageSaved);
+				imageSaved.Dispose();
 			}
 			else
 			{
@@ -322,7 +294,7 @@ namespace DiskIcon
 			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
 			{
 				applyOrDirectSaveIco.Text = "直接保存为ico";
-				doNotCropOrDirectSavePng.Text = "直接保存为png";
+				doNotCropOrDirectSaveImage.Text = "直接保存为图片";
 				applyOrDirectSaveIco.Enabled = true;
 			}
 			else

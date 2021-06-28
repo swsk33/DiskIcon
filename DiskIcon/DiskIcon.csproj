@@ -65,6 +65,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IconImage.resx</DependentUpon>
     </Compile>
+    <Compile Include="src\Frame\SaveImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Frame\SaveImage.Designer.cs">
+      <DependentUpon>SaveImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Frame\ConfigFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     <Compile Include="src\Util\FileUtils.cs" />
     <Compile Include="src\Util\ImageUtils.cs" />
     <Compile Include="src\Util\ProgramUtils.cs" />
+    <EmbeddedResource Include="src\Frame\SaveImage.resx">
+      <DependentUpon>SaveImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Frame\ConfigFrame.resx">
       <DependentUpon>ConfigFrame.cs</DependentUpon>
     </EmbeddedResource>

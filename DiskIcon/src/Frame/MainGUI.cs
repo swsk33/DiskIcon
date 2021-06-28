@@ -66,7 +66,7 @@ namespace DiskIcon
 			OpenFileDialog dialog = new OpenFileDialog();
 			dialog.Multiselect = false;
 			dialog.Title = "请选择图片文件";
-			dialog.Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp";
+			dialog.Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp;*.tif;*.tiff";
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
 				picPathValue.Text = dialog.FileName;

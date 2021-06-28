@@ -24,6 +24,22 @@ namespace DiskIcon.Util
 		}
 
 		/// <summary>
+		/// 保存图片至指定文件
+		/// </summary>
+		/// <param name="image">待保存图片</param>
+		/// <param name="format">图片格式</param>
+		/// <param name="sideLength">保存图片边长</param>
+		/// <param name="filePath">保存路径</param>
+		/// <returns>是否保存成功</returns>
+		public static bool SaveImageFile(Image image, ImageFormat format, int sideLength, string filePath)
+		{
+			Bitmap resultImage = new Bitmap(image, new Size(sideLength, sideLength));
+			resultImage.Save(filePath, format);
+			resultImage.Dispose();
+			return File.Exists(filePath);
+		}
+
+		/// <summary>
 		/// 图片保存为ico文件
 		/// </summary>
 		/// <param name="origin">原图片</param>
