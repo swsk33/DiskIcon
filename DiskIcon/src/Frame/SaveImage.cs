@@ -41,7 +41,7 @@ namespace DiskIcon
 
 		private void ConfigFrame_MouseDown(object sender, MouseEventArgs e)
 		{
-			Cursor = Cursors.Cross;
+			Cursor = Cursors.SizeAll;
 			mouseAtX = e.X;
 			mouseAtY = e.Y;
 			isMouseDown = true;

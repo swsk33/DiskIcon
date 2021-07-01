@@ -1,5 +1,4 @@
-﻿using DiskIcon.Util;
-using Swsk33.ReadAndWriteSharp;
+﻿using Swsk33.ReadAndWriteSharp;
 using System;
 using System.Windows.Forms;
 
@@ -62,7 +61,7 @@ namespace DiskIcon
 
 		private void ConfigFrame_MouseDown(object sender, MouseEventArgs e)
 		{
-			Cursor = Cursors.Cross;
+			Cursor = Cursors.SizeAll;
 			mouseAtX = e.X;
 			mouseAtY = e.Y;
 			isMouseDown = true;
@@ -133,8 +132,8 @@ namespace DiskIcon
 
 		private void addRight_Click(object sender, EventArgs e)
 		{
-			bool addIconOption = RegUtils.OperateFileOrDirRightMenu(SET_ICON_MENU_NAME, Program.SELF_PATH, ProgramUtils.SurroundByQuote(Program.SELF_PATH) + " i " + ProgramUtils.SurroundByQuote("%l"), true);
-			bool addCropOption = RegUtils.OperateFileOrDirRightMenu(CROP_IMAGE_MENU_NAME, Program.SELF_PATH, ProgramUtils.SurroundByQuote(Program.SELF_PATH) + " c " + ProgramUtils.SurroundByQuote("%l"), true);
+			bool addIconOption = RegUtils.OperateFileOrDirRightMenu(SET_ICON_MENU_NAME, Program.SELF_PATH, TextUtils.SurroundByDoubleQuotes(Program.SELF_PATH) + " i " + TextUtils.SurroundByDoubleQuotes("%l"), true);
+			bool addCropOption = RegUtils.OperateFileOrDirRightMenu(CROP_IMAGE_MENU_NAME, Program.SELF_PATH, TextUtils.SurroundByDoubleQuotes(Program.SELF_PATH) + " c " + TextUtils.SurroundByDoubleQuotes("%l"), true);
 			if (addIconOption && addCropOption)
 			{
 				MessageBox.Show("已成功添加右键快捷操作菜单！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);

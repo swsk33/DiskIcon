@@ -98,9 +98,7 @@ namespace DiskIcon.Model
 		/// </summary>
 		private bool showRefer;
 
-		public Brush CropFrameMaskBrush { get => cropFrameMaskBrush; set => cropFrameMaskBrush = value; }
-
-		/// <summary>0
+		/// <summary>
 		/// 裁剪框外轮廓
 		/// </summary>
 		public Rectangle CropFrameOutlineRectangle { get => cropFrameOutlineRectangle; set => cropFrameOutlineRectangle = value; }
@@ -183,7 +181,7 @@ namespace DiskIcon.Model
 				}
 				else if (GetCropFrameStatus(e) == CropFrameStatus.IN_CROP)
 				{
-					drawComponent.Cursor = Cursors.Cross;
+					drawComponent.Cursor = Cursors.SizeAll;
 					if (!isSizing && isMouseDown)
 					{ //只有在没有调整大小的时候才能拖动
 						int x = e.X - mouseAtX;
