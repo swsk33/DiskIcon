@@ -28,7 +28,8 @@ namespace DiskIcon.Util
 		/// </summary>
 		/// <param name="image">待保存图片</param>
 		/// <param name="format">图片格式</param>
-		/// <param name="width">保存图片边长</param>
+		/// <param name="width">保存图片宽</param>
+		/// <param name="height">保存图片高</param>
 		/// <param name="filePath">保存路径</param>
 		/// <returns>是否保存成功</returns>
 		public static bool SaveImageFile(Image image, ImageFormat format, int width, int height, string filePath)

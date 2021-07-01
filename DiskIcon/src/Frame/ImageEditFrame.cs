@@ -205,6 +205,9 @@ namespace DiskIcon
 			}
 		}
 
+		/// <summary>
+		/// 裁剪并另存为ico按钮
+		/// </summary>
 		private void saveIcon_Click(object sender, System.EventArgs e)
 		{
 			SaveFileDialog dialog = new SaveFileDialog();
@@ -226,6 +229,9 @@ namespace DiskIcon
 			}
 		}
 
+		/// <summary>
+		/// 裁剪并另存为图片按钮
+		/// </summary>
 		private void saveImageFile_Click(object sender, System.EventArgs e)
 		{
 			Image imageSaved = getCropImage();
@@ -233,6 +239,11 @@ namespace DiskIcon
 			imageSaved.Dispose();
 		}
 
+		/// <summary>
+		/// 应用ico为储存器图标或者直接保存图片为ico按钮
+		/// <para>在右键快捷裁剪图片模式下这个按钮是直接保存图片为ico</para>
+		/// <para>其余模式是应用ico到储存器图标</para>
+		/// </summary>
 		private void applyOrDirectSaveIco_Click(object sender, System.EventArgs e)
 		{
 			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
@@ -268,6 +279,11 @@ namespace DiskIcon
 			}
 		}
 
+		/// <summary>
+		/// 不裁剪直接应用图片为储存器图标或者直接保存为图片文件
+		/// <para>在右键快捷裁剪图片模式下这个按钮是直接保存为图片文件</para>
+		/// <para>其余模式下为直接把图片应用为储存器图标</para>
+		/// </summary>
 		private void doNotCropOrDirectSaveImage_Click(object sender, System.EventArgs e)
 		{
 			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
