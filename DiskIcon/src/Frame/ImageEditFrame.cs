@@ -229,7 +229,7 @@ namespace DiskIcon
 		private void saveImageFile_Click(object sender, System.EventArgs e)
 		{
 			Image imageSaved = getCropImage();
-			new SaveImage().initSaveImageDialog(imageSaved);
+			new SaveImage().initSaveImageDialog(imageSaved, true);
 			imageSaved.Dispose();
 		}
 
@@ -273,7 +273,7 @@ namespace DiskIcon
 			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
 			{
 				Image imageSaved = new Bitmap(inputImage.Image);
-				new SaveImage().initSaveImageDialog(imageSaved);
+				new SaveImage().initSaveImageDialog(imageSaved, false);
 				imageSaved.Dispose();
 			}
 			else

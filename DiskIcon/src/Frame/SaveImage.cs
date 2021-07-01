@@ -27,14 +27,20 @@ namespace DiskIcon
 		/// </summary>
 		private Image originImage;
 
+		/// <summary>
+		/// 是否是正方形图片
+		/// </summary>
+		private bool isSquare;
+
 		public SaveImage()
 		{
 			CheckForIllegalCrossThreadCalls = false;
 			InitializeComponent();
 		}
 
-		public void initSaveImageDialog(Image image)
+		public void initSaveImageDialog(Image image, bool isSquare)
 		{
+			this.isSquare = isSquare;
 			originImage = image;
 			ShowDialog();
 		}
@@ -70,6 +76,10 @@ namespace DiskIcon
 		private void SaveImage_Load(object sender, System.EventArgs e)
 		{
 			imageFormatValue.SelectedIndex = 0;
+			if (!isSquare)
+			{
+				customSize.Enabled = false;
+			}
 		}
 
 		/// <summary>
@@ -118,8 +128,9 @@ namespace DiskIcon
 					saveFilter = "便携式网络图形(*.png)|*.png";
 					break;
 			}
-			int sideLength = originImage.Width;
-			if (customSize.Checked)
+			int width = originImage.Width;
+			int height = originImage.Height;
+			if (isSquare && customSize.Checked)
 			{
 				if (customValue.Text.Equals(""))
 				{
@@ -128,7 +139,8 @@ namespace DiskIcon
 				}
 				try
 				{
-					sideLength = int.Parse(customValue.Text);
+					width = int.Parse(customValue.Text);
+					height = width;
 				}
 				catch
 				{
@@ -141,7 +153,7 @@ namespace DiskIcon
 			dialog.Filter = saveFilter;
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				if (ImageUtils.SaveImageFile(originImage, format, sideLength, dialog.FileName))
+				if (ImageUtils.SaveImageFile(originImage, format, width, height, dialog.FileName))
 				{
 					MessageBox.Show("已保存图片文件至：" + dialog.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
