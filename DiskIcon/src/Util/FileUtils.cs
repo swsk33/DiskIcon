@@ -24,18 +24,19 @@ namespace DiskIcon.Util
 		/// 获取指定驱动器名称
 		/// </summary>
 		/// <param name="diskPath">盘符，例如C:\</param>
-		/// <returns>指定驱动器名</returns>
+		/// <returns>指定驱动器名，若驱动器没有名字返回"无名盘"</returns>
 		public static string GetDriveName(string diskPath)
 		{
 			DriveInfo[] totalDirves = DriveInfo.GetDrives();
+			string driveName = "无名盘";
 			foreach (DriveInfo info in totalDirves)
 			{
-				if (info.Name.Equals(diskPath))
+				if (info.Name.Equals(diskPath) && !info.VolumeLabel.Equals(""))
 				{
-					return info.VolumeLabel;
+					driveName = info.VolumeLabel;
 				}
 			}
-			return null;
+			return driveName;
 		}
 
 		/// <summary>
