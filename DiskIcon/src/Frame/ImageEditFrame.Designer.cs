@@ -258,7 +258,7 @@ namespace DiskIcon
 			this.MinimizeBox = false;
 			this.Name = "ImageEditFrame";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "ImageEditFrame";
+			this.Text = "图片裁剪";
 			this.Load += new System.EventHandler(this.ImageEditFrame_Load);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ConfigFrame_MouseDown);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ConfigFrame_MouseMove);

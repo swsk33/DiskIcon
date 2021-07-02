@@ -73,12 +73,12 @@ namespace DiskIcon
 			// 
 			this.mainTitle.AutoSize = true;
 			this.mainTitle.BackColor = System.Drawing.Color.Transparent;
-			this.mainTitle.Font = new System.Drawing.Font("幼圆", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.mainTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.mainTitle.ForeColor = System.Drawing.Color.Black;
 			this.mainTitle.Location = new System.Drawing.Point(65, 44);
 			this.mainTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.mainTitle.Name = "mainTitle";
-			this.mainTitle.Size = new System.Drawing.Size(209, 19);
+			this.mainTitle.Size = new System.Drawing.Size(200, 24);
 			this.mainTitle.TabIndex = 4;
 			this.mainTitle.Text = "请选择要修改的储存器";
 			// 
@@ -144,7 +144,7 @@ namespace DiskIcon
 			this.MinimizeBox = false;
 			this.Name = "QuickSetIcon";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "QuickSetIcon";
+			this.Text = "快捷设定图标";
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDownEvent);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mouseMoveEvent);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mouseUpEvent);

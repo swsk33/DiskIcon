@@ -44,12 +44,12 @@
 			// 
 			this.title.AutoSize = true;
 			this.title.BackColor = System.Drawing.Color.Transparent;
-			this.title.Font = new System.Drawing.Font("幼圆", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.title.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.title.ForeColor = System.Drawing.Color.Black;
 			this.title.Location = new System.Drawing.Point(128, 44);
 			this.title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.title.Name = "title";
-			this.title.Size = new System.Drawing.Size(98, 21);
+			this.title.Size = new System.Drawing.Size(96, 25);
 			this.title.TabIndex = 1;
 			this.title.Text = "保存图片";
 			// 
@@ -190,7 +190,7 @@
 			this.MinimizeBox = false;
 			this.Name = "SaveImage";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "图标修改工具-设置";
+			this.Text = "保存图片";
 			this.Load += new System.EventHandler(this.SaveImage_Load);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ConfigFrame_MouseDown);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ConfigFrame_MouseMove);
