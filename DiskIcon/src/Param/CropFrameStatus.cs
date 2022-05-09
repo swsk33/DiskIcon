@@ -1,4 +1,4 @@
-﻿namespace DiskIcon.Param
+﻿namespace Swsk33.DiskIcon.Param
 {
 	/// <summary>
 	/// 对裁剪框状态的枚举

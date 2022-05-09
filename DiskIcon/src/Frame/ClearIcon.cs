@@ -1,9 +1,9 @@
-﻿using DiskIcon.Util;
+﻿using Swsk33.DiskIcon.Util;
 using System;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace DiskIcon
+namespace Swsk33.DiskIcon
 {
 	public partial class ClearIcon : Form
 	{

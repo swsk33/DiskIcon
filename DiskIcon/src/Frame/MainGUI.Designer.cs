@@ -1,5 +1,5 @@
 ﻿
-namespace DiskIcon
+namespace Swsk33.DiskIcon
 {
 	partial class MainGUI
 	{
@@ -65,7 +65,7 @@ namespace DiskIcon
 			// close
 			// 
 			this.close.BackColor = System.Drawing.Color.Transparent;
-			this.close.BackgroundImage = global::DiskIcon.IconImage.close;
+			this.close.BackgroundImage = global::Swsk33.DiskIcon.IconImage.close;
 			this.close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.close.FlatAppearance.BorderColor = System.Drawing.Color.White;
 			this.close.FlatAppearance.BorderSize = 0;
@@ -122,7 +122,7 @@ namespace DiskIcon
 			// picLabel
 			// 
 			this.picLabel.BackColor = System.Drawing.Color.Transparent;
-			this.picLabel.BackgroundImage = global::DiskIcon.IconImage.pic;
+			this.picLabel.BackgroundImage = global::Swsk33.DiskIcon.IconImage.pic;
 			this.picLabel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.picLabel.Location = new System.Drawing.Point(38, 128);
 			this.picLabel.Name = "picLabel";
@@ -133,7 +133,7 @@ namespace DiskIcon
 			// diskLabel
 			// 
 			this.diskLabel.BackColor = System.Drawing.Color.Transparent;
-			this.diskLabel.BackgroundImage = global::DiskIcon.IconImage.disk;
+			this.diskLabel.BackgroundImage = global::Swsk33.DiskIcon.IconImage.disk;
 			this.diskLabel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.diskLabel.Location = new System.Drawing.Point(38, 185);
 			this.diskLabel.Name = "diskLabel";
@@ -238,7 +238,7 @@ namespace DiskIcon
 			// about
 			// 
 			this.about.BackColor = System.Drawing.Color.Transparent;
-			this.about.BackgroundImage = global::DiskIcon.IconImage.about;
+			this.about.BackgroundImage = global::Swsk33.DiskIcon.IconImage.about;
 			this.about.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.about.FlatAppearance.BorderColor = System.Drawing.Color.White;
 			this.about.FlatAppearance.BorderSize = 0;
@@ -256,7 +256,7 @@ namespace DiskIcon
 			// setup
 			// 
 			this.setup.BackColor = System.Drawing.Color.Transparent;
-			this.setup.BackgroundImage = global::DiskIcon.IconImage.setup;
+			this.setup.BackgroundImage = global::Swsk33.DiskIcon.IconImage.setup;
 			this.setup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.setup.FlatAppearance.BorderColor = System.Drawing.Color.White;
 			this.setup.FlatAppearance.BorderSize = 0;
@@ -275,7 +275,7 @@ namespace DiskIcon
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = global::DiskIcon.BackgroundImage.mainbg;
+			this.BackgroundImage = global::Swsk33.DiskIcon.BackgroundImage.mainbg;
 			this.ClientSize = new System.Drawing.Size(450, 315);
 			this.Controls.Add(this.setup);
 			this.Controls.Add(this.about);

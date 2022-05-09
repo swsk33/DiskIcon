@@ -1,8 +1,9 @@
-﻿using System.Drawing;
+﻿using Swsk33.DiskIcon.Model;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace DiskIcon.Util
+namespace Swsk33.DiskIcon.Util
 {
 	/// <summary>
 	/// 图片处理实用类
@@ -48,7 +49,7 @@ namespace DiskIcon.Util
 		/// <returns>是否保存成功</returns>
 		public static bool SaveToIcon(Image origin, string destination)
 		{
-			Image image = new Bitmap(origin, new Size(Program.GlobalConfig.IconSize, Program.GlobalConfig.IconSize));
+			Image image = new Bitmap(origin, new Size(Config.GetConfig().IconSize, Config.GetConfig().IconSize));
 			MemoryStream bitMapStream = new MemoryStream();
 			MemoryStream iconStream = new MemoryStream();
 			image.Save(bitMapStream, ImageFormat.Png);

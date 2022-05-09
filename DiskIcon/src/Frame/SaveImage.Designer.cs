@@ -1,4 +1,4 @@
-﻿namespace DiskIcon
+﻿namespace Swsk33.DiskIcon
 {
 	partial class SaveImage
 	{
@@ -173,7 +173,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = global::DiskIcon.BackgroundImage.setbg;
+			this.BackgroundImage = global::Swsk33.DiskIcon.BackgroundImage.setbg;
 			this.ClientSize = new System.Drawing.Size(350, 270);
 			this.Controls.Add(this.imageFormatValue);
 			this.Controls.Add(this.customValue);

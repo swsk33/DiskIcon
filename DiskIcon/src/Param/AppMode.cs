@@ -1,4 +1,4 @@
-﻿namespace DiskIcon.Param
+﻿namespace Swsk33.DiskIcon.Param
 {
 	/// <summary>
 	/// 定义程序运行模式的枚举

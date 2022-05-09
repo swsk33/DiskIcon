@@ -1,8 +1,10 @@
-﻿using Swsk33.ReadAndWriteSharp;
+﻿using Swsk33.DiskIcon.Model;
+using Swsk33.ReadAndWriteSharp.System;
+using Swsk33.ReadAndWriteSharp.Util;
 using System;
 using System.Windows.Forms;
 
-namespace DiskIcon
+namespace Swsk33.DiskIcon
 {
 	public partial class ConfigFrame : Form
 	{
@@ -42,7 +44,7 @@ namespace DiskIcon
 			bool custom = true;
 			foreach (string size in IconSizeValue.Items)
 			{
-				if (Convert.ToString(Program.GlobalConfig.IconSize).Equals(size))
+				if (Convert.ToString(Config.GetConfig().IconSize).Equals(size))
 				{
 					custom = false;
 					IconSizeValue.SelectedItem = size;
@@ -54,7 +56,7 @@ namespace DiskIcon
 				isCustom.Checked = true;
 				customValue.Enabled = true;
 				IconSizeValue.Enabled = false;
-				customValue.Text = Convert.ToString(Program.GlobalConfig.IconSize);
+				customValue.Text = Convert.ToString(Config.GetConfig().IconSize);
 				IconSizeValue.SelectedIndex = 4;
 			}
 		}
@@ -106,13 +108,13 @@ namespace DiskIcon
 					MessageBox.Show("自定义边长必须在1-255之间！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
 				}
-				Program.GlobalConfig.IconSize = size;
+				Config.GetConfig().IconSize = size;
 			}
 			else
 			{
-				Program.GlobalConfig.IconSize = int.Parse(IconSizeValue.SelectedItem.ToString());
+				Config.GetConfig().IconSize = int.Parse(IconSizeValue.SelectedItem.ToString());
 			}
-			BinaryUtils.WriteObjectToFile(Program.CFG_FILE_PATH, Program.GlobalConfig);
+			Config.WriteToLocal();
 			Dispose();
 		}
 
@@ -132,8 +134,8 @@ namespace DiskIcon
 
 		private void addRight_Click(object sender, EventArgs e)
 		{
-			bool addIconOption = RegUtils.OperateFileOrDirRightMenu(SET_ICON_MENU_NAME, Program.SELF_PATH, TextUtils.SurroundByDoubleQuotes(Program.SELF_PATH) + " i " + TextUtils.SurroundByDoubleQuotes("%l"), true);
-			bool addCropOption = RegUtils.OperateFileOrDirRightMenu(CROP_IMAGE_MENU_NAME, Program.SELF_PATH, TextUtils.SurroundByDoubleQuotes(Program.SELF_PATH) + " c " + TextUtils.SurroundByDoubleQuotes("%l"), true);
+			bool addIconOption = RegUtils.OperateFileRightMenu(SET_ICON_MENU_NAME, Program.SELF_PATH, StringUtils.SurroundByDoubleQuotes(Program.SELF_PATH) + " i \"%l\"", true);
+			bool addCropOption = RegUtils.OperateFileRightMenu(CROP_IMAGE_MENU_NAME, Program.SELF_PATH, StringUtils.SurroundByDoubleQuotes(Program.SELF_PATH) + " c \"%l\"", true);
 			if (addIconOption && addCropOption)
 			{
 				MessageBox.Show("已成功添加右键快捷操作菜单！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -146,8 +148,8 @@ namespace DiskIcon
 
 		private void rmRight_Click(object sender, EventArgs e)
 		{
-			bool rmIconOption = RegUtils.OperateFileOrDirRightMenu(SET_ICON_MENU_NAME, "", false);
-			bool rmCropOption = RegUtils.OperateFileOrDirRightMenu(CROP_IMAGE_MENU_NAME, "", false);
+			bool rmIconOption = RegUtils.OperateFileRightMenu(SET_ICON_MENU_NAME, "", false);
+			bool rmCropOption = RegUtils.OperateFileRightMenu(CROP_IMAGE_MENU_NAME, "", false);
 			if (rmIconOption && rmCropOption)
 			{
 				MessageBox.Show("已成功移除右键快捷操作菜单！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);

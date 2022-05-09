@@ -1,9 +1,9 @@
-﻿using DiskIcon.Util;
+﻿using Swsk33.DiskIcon.Util;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace DiskIcon
+namespace Swsk33.DiskIcon
 {
 	public partial class SaveImage : Form
 	{

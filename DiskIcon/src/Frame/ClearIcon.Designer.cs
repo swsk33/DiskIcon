@@ -1,5 +1,5 @@
 ﻿
-namespace DiskIcon
+namespace Swsk33.DiskIcon
 {
 	partial class ClearIcon
 	{
@@ -42,7 +42,7 @@ namespace DiskIcon
 			// close
 			// 
 			this.close.BackColor = System.Drawing.Color.Transparent;
-			this.close.BackgroundImage = global::DiskIcon.IconImage.close;
+			this.close.BackgroundImage = global::Swsk33.DiskIcon.IconImage.close;
 			this.close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.close.FlatAppearance.BorderColor = System.Drawing.Color.White;
 			this.close.FlatAppearance.BorderSize = 0;
@@ -130,7 +130,7 @@ namespace DiskIcon
 			// loading
 			// 
 			this.loading.BackColor = System.Drawing.Color.Transparent;
-			this.loading.Image = global::DiskIcon.IconImage.loading;
+			this.loading.Image = global::Swsk33.DiskIcon.IconImage.loading;
 			this.loading.Location = new System.Drawing.Point(7, 34);
 			this.loading.Name = "loading";
 			this.loading.Size = new System.Drawing.Size(24, 24);
@@ -143,7 +143,7 @@ namespace DiskIcon
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = global::DiskIcon.BackgroundImage.minibg;
+			this.BackgroundImage = global::Swsk33.DiskIcon.BackgroundImage.minibg;
 			this.ClientSize = new System.Drawing.Size(350, 120);
 			this.Controls.Add(this.loading);
 			this.Controls.Add(this.ok);

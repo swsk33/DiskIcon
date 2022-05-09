@@ -1,10 +1,10 @@
-﻿using Swsk33.ReadAndWriteSharp;
+﻿using Swsk33.ReadAndWriteSharp.System;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Text;
 
-namespace DiskIcon.Util
+namespace Swsk33.DiskIcon.Util
 {
 	/// <summary>
 	/// 文件操作实用类

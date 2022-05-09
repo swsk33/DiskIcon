@@ -1,11 +1,11 @@
-﻿using DiskIcon.Model;
-using DiskIcon.Param;
-using DiskIcon.Util;
+﻿using Swsk33.DiskIcon.Model;
+using Swsk33.DiskIcon.Param;
+using Swsk33.DiskIcon.Util;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace DiskIcon
+namespace Swsk33.DiskIcon
 {
 	public partial class ImageEditFrame : Form
 	{

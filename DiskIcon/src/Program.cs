@@ -1,13 +1,10 @@
-﻿using DiskIcon.Model;
-using DiskIcon.Param;
-using Swsk33.ReadAndWriteSharp;
+﻿using Swsk33.DiskIcon.Param;
 using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
-namespace DiskIcon
+namespace Swsk33.DiskIcon
 {
 	static class Program
 	{
@@ -17,24 +14,9 @@ namespace DiskIcon
 		public static readonly string SELF_PATH = Process.GetCurrentProcess().MainModule.FileName;
 
 		/// <summary>
-		/// 程序配置主目录
-		/// </summary>
-		public static readonly string CFG_DIR_PATH = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.config\\diskIcon\\";
-
-		/// <summary>
-		/// 程序配置文件路径
-		/// </summary>
-		public static readonly string CFG_FILE_PATH = CFG_DIR_PATH + "diskIcon.cfg";
-
-		/// <summary>
 		/// 支持的图片格式
 		/// </summary>
 		public static readonly string[] SUPPORT_IMAGE_FORMAT = { "jpg", "jpeg", "png", "bmp", "tif", "tiff" };
-
-		/// <summary>
-		/// 全局配置信息
-		/// </summary>
-		public static Config GlobalConfig;
 
 		/// <summary>
 		/// 运行模式
@@ -47,30 +29,11 @@ namespace DiskIcon
 		public static string QuickModeImage;
 
 		/// <summary>
-		/// 初始化
-		/// </summary>
-		private static void Initialize()
-		{
-			if (!Directory.Exists(CFG_DIR_PATH))
-			{
-				Directory.CreateDirectory(CFG_DIR_PATH);
-			}
-			if (!File.Exists(CFG_FILE_PATH))
-			{
-				GlobalConfig = new Config(128, true);
-				BinaryUtils.WriteObjectToFile(CFG_FILE_PATH, GlobalConfig);
-				return;
-			}
-			GlobalConfig = BinaryUtils.ReadObjectFromFile<Config>(CFG_FILE_PATH);
-		}
-
-		/// <summary>
 		/// 应用程序的主入口点。
 		/// </summary>
 		[STAThread]
 		static void Main(string[] args)
 		{
-			Initialize();
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			/**

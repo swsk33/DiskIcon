@@ -1,9 +1,9 @@
-﻿using DiskIcon.Param;
+﻿using Swsk33.DiskIcon.Param;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace DiskIcon.Model
+namespace Swsk33.DiskIcon.Model
 {
 	/// <summary>
 	/// 裁剪框实例
