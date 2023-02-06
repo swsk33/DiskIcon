@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Swsk33.DiskIcon.Param;
+using Swsk33.DiskIcon.Strategy.Context;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
@@ -69,7 +71,7 @@ namespace Swsk33.DiskIcon
 			dialog.Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp;*.tif;*.tiff";
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				picPathValue.Text = dialog.FileName;
+				imagePathValue.Text = dialog.FileName;
 			}
 		}
 
@@ -86,7 +88,7 @@ namespace Swsk33.DiskIcon
 
 		private void ok_Click(object sender, EventArgs e)
 		{
-			if (picPathValue.Text.Equals(""))
+			if (imagePathValue.Text.Equals(""))
 			{
 				MessageBox.Show("请指定图片！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -96,7 +98,7 @@ namespace Swsk33.DiskIcon
 				MessageBox.Show("请指定驱动器！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-			Image inputImage = Image.FromFile(picPathValue.Text);
+			Image inputImage = ImageLoadContext.LoadImage(ImageCategory.NORMAL, imagePathValue.Text);
 			new ImageEditFrame().initEditFrame(inputImage, diskPathValue.Text);
 			inputImage.Dispose();
 		}

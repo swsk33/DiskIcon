@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Swsk33.DiskIcon</RootNamespace>
     <AssemblyName>DiskIcon</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -50,8 +50,8 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ReadAndWriteSharp, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Swsk33.ReadAndWriteSharp.3.6.0\lib\net46\ReadAndWriteSharp.dll</HintPath>
+    <Reference Include="ReadAndWriteSharp, Version=3.6.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swsk33.ReadAndWriteSharp.3.6.5\lib\net46\ReadAndWriteSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -96,6 +96,8 @@
     <Compile Include="src\Model\Config.cs" />
     <Compile Include="src\Param\AppMode.cs" />
     <Compile Include="src\Param\CropFrameStatus.cs" />
+    <Compile Include="src\Param\ImageFileFeature.cs" />
+    <Compile Include="src\Param\ImageCategory.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Frame\ClearIcon.cs">
@@ -110,6 +112,18 @@
     <Compile Include="src\Frame\QuickSetIcon.Designer.cs">
       <DependentUpon>QuickSetIcon.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Strategy\Context\ImageLoadContext.cs" />
+    <Compile Include="src\Strategy\Context\ImageSaveContext.cs" />
+    <Compile Include="src\Strategy\Context\LaunchContext.cs" />
+    <Compile Include="src\Strategy\ImageLoadStrategy.cs" />
+    <Compile Include="src\Strategy\ImageSaveStrategy.cs" />
+    <Compile Include="src\Strategy\Impl\GUILaunchStrategy.cs" />
+    <Compile Include="src\Strategy\Impl\IconImageSaveStrategy.cs" />
+    <Compile Include="src\Strategy\Impl\NormalImageLoadStrategy.cs" />
+    <Compile Include="src\Strategy\Impl\NormalImageSaveStrategy.cs" />
+    <Compile Include="src\Strategy\Impl\QuickIconSetLaunchStrategy.cs" />
+    <Compile Include="src\Strategy\Impl\QuickImageCropLaunchStrategy.cs" />
+    <Compile Include="src\Strategy\LaunchStrategy.cs" />
     <Compile Include="src\Util\FileUtils.cs" />
     <Compile Include="src\Util\ImageUtils.cs" />
     <EmbeddedResource Include="src\Frame\SaveImage.resx">
@@ -209,5 +223,6 @@
   <ItemGroup>
     <Content Include="icon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

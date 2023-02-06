@@ -37,7 +37,7 @@ namespace Swsk33.DiskIcon
 			this.tip2 = new System.Windows.Forms.Label();
 			this.picLabel = new System.Windows.Forms.PictureBox();
 			this.diskLabel = new System.Windows.Forms.PictureBox();
-			this.picPathValue = new System.Windows.Forms.TextBox();
+			this.imagePathValue = new System.Windows.Forms.TextBox();
 			this.diskPathValue = new System.Windows.Forms.TextBox();
 			this.selectPic = new System.Windows.Forms.Button();
 			this.selectDrive = new System.Windows.Forms.Button();
@@ -58,7 +58,7 @@ namespace Swsk33.DiskIcon
 			this.title.Location = new System.Drawing.Point(5, 8);
 			this.title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.title.Name = "title";
-			this.title.Size = new System.Drawing.Size(104, 16);
+			this.title.Size = new System.Drawing.Size(103, 16);
 			this.title.TabIndex = 0;
 			this.title.Text = "图标修改工具";
 			// 
@@ -141,16 +141,16 @@ namespace Swsk33.DiskIcon
 			this.diskLabel.TabIndex = 3;
 			this.diskLabel.TabStop = false;
 			// 
-			// picPathValue
+			// imagePathValue
 			// 
-			this.picPathValue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.picPathValue.Location = new System.Drawing.Point(102, 134);
-			this.picPathValue.Multiline = true;
-			this.picPathValue.Name = "picPathValue";
-			this.picPathValue.ReadOnly = true;
-			this.picPathValue.Size = new System.Drawing.Size(207, 29);
-			this.picPathValue.TabIndex = 4;
-			this.picPathValue.WordWrap = false;
+			this.imagePathValue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.imagePathValue.Location = new System.Drawing.Point(102, 134);
+			this.imagePathValue.Multiline = true;
+			this.imagePathValue.Name = "imagePathValue";
+			this.imagePathValue.ReadOnly = true;
+			this.imagePathValue.Size = new System.Drawing.Size(207, 29);
+			this.imagePathValue.TabIndex = 4;
+			this.imagePathValue.WordWrap = false;
 			// 
 			// diskPathValue
 			// 
@@ -284,7 +284,7 @@ namespace Swsk33.DiskIcon
 			this.Controls.Add(this.ok);
 			this.Controls.Add(this.selectPic);
 			this.Controls.Add(this.diskPathValue);
-			this.Controls.Add(this.picPathValue);
+			this.Controls.Add(this.imagePathValue);
 			this.Controls.Add(this.diskLabel);
 			this.Controls.Add(this.picLabel);
 			this.Controls.Add(this.tip2);
@@ -317,7 +317,7 @@ namespace Swsk33.DiskIcon
 		private System.Windows.Forms.Label tip2;
 		private System.Windows.Forms.PictureBox picLabel;
 		private System.Windows.Forms.PictureBox diskLabel;
-		private System.Windows.Forms.TextBox picPathValue;
+		private System.Windows.Forms.TextBox imagePathValue;
 		private System.Windows.Forms.TextBox diskPathValue;
 		private System.Windows.Forms.Button selectPic;
 		private System.Windows.Forms.Button selectDrive;

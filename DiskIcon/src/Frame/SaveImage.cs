@@ -1,6 +1,6 @@
-﻿using Swsk33.DiskIcon.Util;
+﻿using Swsk33.DiskIcon.Param;
+using Swsk33.DiskIcon.src.Strategy.Context;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace Swsk33.DiskIcon
@@ -38,10 +38,10 @@ namespace Swsk33.DiskIcon
 			InitializeComponent();
 		}
 
-		public void initSaveImageDialog(Image image, bool isSquare)
+		public void initSaveImageDialog(Image image)
 		{
-			this.isSquare = isSquare;
 			originImage = image;
+			isSquare = originImage.Width == originImage.Height;
 			ShowDialog();
 		}
 
@@ -99,32 +99,25 @@ namespace Swsk33.DiskIcon
 
 		private void ok_Click(object sender, System.EventArgs e)
 		{
-			ImageFormat format;
 			string saveFilter;
 			switch (imageFormatValue.SelectedIndex)
 			{
 				case 0:
-					format = ImageFormat.Png;
 					saveFilter = "便携式网络图形(*.png)|*.png";
 					break;
 				case 1:
-					format = ImageFormat.Jpeg;
 					saveFilter = "联合图像专家组图形(*.jpg)|*.jpg";
 					break;
 				case 2:
-					format = ImageFormat.Bmp;
 					saveFilter = "位图格式(*.bmp)|*.bmp";
 					break;
 				case 3:
-					format = ImageFormat.Tiff;
 					saveFilter = "标记图像文件(*.tif)|*.tif";
 					break;
 				case 4:
-					format = ImageFormat.Gif;
 					saveFilter = "图形交换格式(*.gif)|*.gif";
 					break;
 				default:
-					format = ImageFormat.Png;
 					saveFilter = "便携式网络图形(*.png)|*.png";
 					break;
 			}
@@ -153,7 +146,7 @@ namespace Swsk33.DiskIcon
 			dialog.Filter = saveFilter;
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				if (ImageUtils.SaveImageFile(originImage, format, width, height, dialog.FileName))
+				if (ImageSaveContext.SaveImage(ImageCategory.NORMAL, originImage, dialog.FileName, width, height))
 				{
 					MessageBox.Show("已保存图片文件至：" + dialog.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}

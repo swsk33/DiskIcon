@@ -1,12 +1,11 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("DiskIcon")]
-[assembly: AssemblyDescription("可以便捷地修改本地硬盘、U盘的图标。")]
+[assembly: AssemblyDescription("可以便捷地修改本地硬盘、U盘的图标，以及对图片执行快捷的裁剪与格式转换")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("swsk33")]
 [assembly: AssemblyProduct("储存器图标修改工具-Sharp")]

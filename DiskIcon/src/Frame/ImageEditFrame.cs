@@ -1,5 +1,6 @@
 ﻿using Swsk33.DiskIcon.Model;
 using Swsk33.DiskIcon.Param;
+using Swsk33.DiskIcon.src.Strategy.Context;
 using Swsk33.DiskIcon.Util;
 using System.Drawing;
 using System.Threading;
@@ -90,7 +91,7 @@ namespace Swsk33.DiskIcon
 		{
 			this.inputImage.Image = inputImage;
 			double ratio = (double)inputImage.Width / inputImage.Height;
-			//确定图片域
+			// 确定图片域
 			if (ratio > 1)
 			{
 				imageInBoxWidth = this.inputImage.Width;
@@ -216,7 +217,7 @@ namespace Swsk33.DiskIcon
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
 				Image icon = getCropImage();
-				bool success = ImageUtils.SaveToIcon(icon, dialog.FileName);
+				bool success = ImageSaveContext.SaveImage(ImageCategory.ICON, icon, dialog.FileName, Config.GetConfig().IconSize, Config.GetConfig().IconSize);
 				icon.Dispose();
 				if (success)
 				{
@@ -235,7 +236,7 @@ namespace Swsk33.DiskIcon
 		private void saveImageFile_Click(object sender, System.EventArgs e)
 		{
 			Image imageSaved = getCropImage();
-			new SaveImage().initSaveImageDialog(imageSaved, true);
+			new SaveImage().initSaveImageDialog(imageSaved);
 			imageSaved.Dispose();
 		}
 
@@ -253,7 +254,7 @@ namespace Swsk33.DiskIcon
 				dialog.Filter = "图标文件(*.ico)|*.ico";
 				if (dialog.ShowDialog() == DialogResult.OK)
 				{
-					bool success = ImageUtils.SaveToIcon(inputImage.Image, dialog.FileName);
+					bool success = ImageSaveContext.SaveImage(ImageCategory.ICON, inputImage.Image, dialog.FileName, Config.GetConfig().IconSize, Config.GetConfig().IconSize);
 					if (success)
 					{
 						MessageBox.Show("已保存ico文件至：" + dialog.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -288,9 +289,7 @@ namespace Swsk33.DiskIcon
 		{
 			if (Program.GlobalAppMode == AppMode.IMAGE_CROP_MODE)
 			{
-				Image imageSaved = new Bitmap(inputImage.Image);
-				new SaveImage().initSaveImageDialog(imageSaved, false);
-				imageSaved.Dispose();
+				new SaveImage().initSaveImageDialog(inputImage.Image);
 			}
 			else
 			{

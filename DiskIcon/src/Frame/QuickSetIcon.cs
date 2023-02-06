@@ -21,10 +21,20 @@ namespace Swsk33.DiskIcon
 		/// </summary>
 		private bool isMouseDown = false;
 
-		public QuickSetIcon()
+		/// <summary>
+		/// 传入的原图
+		/// </summary>
+		private Image inputImage;
+
+		/// <summary>
+		/// 构造函数，需传入已读取的原图对象
+		/// </summary>
+		/// <param name="inputImage"></param>
+		public QuickSetIcon(Image inputImage)
 		{
 			CheckForIllegalCrossThreadCalls = false;
 			InitializeComponent();
+			this.inputImage = inputImage;
 		}
 
 		private void close_Click(object sender, EventArgs e)
@@ -74,9 +84,7 @@ namespace Swsk33.DiskIcon
 				return;
 			}
 			string diskPath = DiskValue.Text;
-			Image image = Image.FromFile(Program.QuickModeImage);
-			new ImageEditFrame().initEditFrame(image, diskPath);
-			image.Dispose();
+			new ImageEditFrame().initEditFrame(inputImage, diskPath);
 		}
 	}
 }

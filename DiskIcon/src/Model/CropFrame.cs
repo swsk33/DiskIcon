@@ -10,7 +10,6 @@ namespace Swsk33.DiskIcon.Model
 	/// </summary>
 	public class CropFrame
 	{
-
 		/// <summary>
 		/// 指定绘制裁剪框的组件
 		/// </summary>
@@ -125,11 +124,11 @@ namespace Swsk33.DiskIcon.Model
 		public CropFrame(Control drawComponent, Rectangle restrictedArea)
 		{
 			this.drawComponent = drawComponent;
-			//添加鼠标事件
+			// 添加鼠标事件
 			this.drawComponent.MouseDown += new MouseEventHandler(mouseDown);
 			this.drawComponent.MouseMove += new MouseEventHandler(mouseMove);
 			this.drawComponent.MouseUp += new MouseEventHandler(mouseUp);
-			//设定限定区
+			// 设定限定区
 			doRestrict = true;
 			this.restrictedArea = restrictedArea;
 		}

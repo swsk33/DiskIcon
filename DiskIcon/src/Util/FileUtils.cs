@@ -1,4 +1,7 @@
-﻿using Swsk33.ReadAndWriteSharp.System;
+﻿using Swsk33.DiskIcon.Model;
+using Swsk33.DiskIcon.Param;
+using Swsk33.DiskIcon.src.Strategy.Context;
+using Swsk33.ReadAndWriteSharp.System;
 using System;
 using System.Drawing;
 using System.IO;
@@ -48,7 +51,7 @@ namespace Swsk33.DiskIcon.Util
 		{
 			string iconFileName = GetDateTimeFileName();
 			RemoveDiskIcon(diskPath);
-			ImageUtils.SaveToIcon(image, diskPath + iconFileName);
+			ImageSaveContext.SaveImage(ImageCategory.ICON, image, diskPath + iconFileName, Config.GetConfig().IconSize, Config.GetConfig().IconSize);
 			File.WriteAllText(diskPath + "autorun.inf", "[AutoRun]\r\nicon=" + iconFileName, new UTF8Encoding(false));
 			string originDiskName = GetDriveName(diskPath);
 			TerminalUtils.RunCommand("label", diskPath.Substring(0, 2) + " ss");

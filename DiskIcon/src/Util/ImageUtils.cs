@@ -1,7 +1,4 @@
-﻿using Swsk33.DiskIcon.Model;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
+﻿using System.Drawing;
 
 namespace Swsk33.DiskIcon.Util
 {
@@ -22,63 +19,6 @@ namespace Swsk33.DiskIcon.Util
 			Graphics graphics = Graphics.FromImage(result);
 			graphics.DrawImage(originImage, new Rectangle(0, 0, region.Width, region.Height), region, GraphicsUnit.Pixel);
 			return result;
-		}
-
-		/// <summary>
-		/// 保存图片至指定文件
-		/// </summary>
-		/// <param name="image">待保存图片</param>
-		/// <param name="format">图片格式</param>
-		/// <param name="width">保存图片宽</param>
-		/// <param name="height">保存图片高</param>
-		/// <param name="filePath">保存路径</param>
-		/// <returns>是否保存成功</returns>
-		public static bool SaveImageFile(Image image, ImageFormat format, int width, int height, string filePath)
-		{
-			Bitmap resultImage = new Bitmap(image, new Size(width, height));
-			resultImage.Save(filePath, format);
-			resultImage.Dispose();
-			return File.Exists(filePath);
-		}
-
-		/// <summary>
-		/// 图片保存为ico文件
-		/// </summary>
-		/// <param name="origin">原图片</param>
-		/// <param name="destination">输出ico文件路径</param>
-		/// <returns>是否保存成功</returns>
-		public static bool SaveToIcon(Image origin, string destination)
-		{
-			Image image = new Bitmap(origin, new Size(Config.GetConfig().IconSize, Config.GetConfig().IconSize));
-			MemoryStream bitMapStream = new MemoryStream();
-			MemoryStream iconStream = new MemoryStream();
-			image.Save(bitMapStream, ImageFormat.Png);
-			BinaryWriter iconWriter = new BinaryWriter(iconStream);
-			iconWriter.Write((short)0);
-			iconWriter.Write((short)1);
-			iconWriter.Write((short)1);
-			iconWriter.Write((byte)image.Width);
-			iconWriter.Write((byte)image.Height);
-			iconWriter.Write((short)0);
-			iconWriter.Write((short)0);
-			iconWriter.Write((short)32);
-			iconWriter.Write((int)bitMapStream.Length);
-			iconWriter.Write(22);
-			//写入图像体至目标图标内存流
-			iconWriter.Write(bitMapStream.ToArray());
-			//保存流，并将流指针定位至头部以Icon对象进行读取输出为文件
-			iconWriter.Flush();
-			iconWriter.Seek(0, SeekOrigin.Begin);
-			Stream iconFileStream = new FileStream(destination, FileMode.Create);
-			Icon icon = new Icon(iconStream);
-			icon.Save(iconFileStream);
-			iconFileStream.Close();
-			iconWriter.Close();
-			iconStream.Close();
-			bitMapStream.Close();
-			icon.Dispose();
-			image.Dispose();
-			return File.Exists(destination);
 		}
 	}
 }
